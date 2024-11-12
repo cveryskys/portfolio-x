@@ -179,6 +179,25 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
+
+        /* New button style for page 2 */
+        .page2 .nav-button {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 30px;
+            background-color: #333333;
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            margin: 10px;
+        }
+
+        .page2 .nav-button:hover {
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
@@ -194,7 +213,7 @@
     <div class="settings-icon" id="settingsIcon"></div>
     <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
 
-    <div class="page2" id="page2">
+    <div class="page2" id="page2" style="display:none;">
         <div class="button-group">
             <button class="nav-button">Work Gallery</button>
             <button class="nav-button">Marketplace</button>
@@ -240,16 +259,22 @@
             settingsTooltip.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
 
-        // Tooltip visibility on hover for Kiwi GIF
-        kiwiGif.addEventListener('mouseover', () => kiwiTooltip.style.opacity = 1);
-        kiwiGif.addEventListener('mouseout', () => kiwiTooltip.style.opacity = 0);
+        kiwiGif.addEventListener('mouseenter', () => {
+            kiwiTooltip.style.opacity = 1;
+        });
 
-        // Tooltip visibility on hover for Roblox button
-        robloxButton.addEventListener('mouseover', () => robloxTooltip.style.opacity = 1);
-        robloxButton.addEventListener('mouseout', () => robloxTooltip.style.opacity = 0);
+        kiwiGif.addEventListener('mouseleave', () => {
+            kiwiTooltip.style.opacity = 0;
+        });
 
-        settingsIcon.addEventListener('mouseover', () => settingsTooltip.style.opacity = 1);
-        settingsIcon.addEventListener('mouseout', () => settingsTooltip.style.opacity = 0);
+        robloxButton.addEventListener('mouseenter', () => {
+            robloxTooltip.style.opacity = 1;
+        });
+
+        robloxButton.addEventListener('mouseleave', () => {
+            robloxTooltip.style.opacity = 0;
+        });
     </script>
+
 </body>
 </html>
