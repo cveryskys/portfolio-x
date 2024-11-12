@@ -205,9 +205,11 @@
     <div class="bg"></div>
     <h1 class="title">Welcome to my portfolio! <3</h1>
 
-    <!-- Kiwi GIF with Tooltip -->
-    <img src="https://tenor.com/view/kitty-gif-16156810735961958287" alt="kiwi gif" class="kiwi-gif" />
-    <div class="kiwi-tooltip">kitti 🥝</div>
+    <!-- Tenor GIF Embed -->
+    <div class="tenor-gif-embed" data-postid="8569045661741956667" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+        <a href="https://tenor.com/view/happy-cat-gif-8569045661741956667">Happy Cat Sticker</a> from <a href="https://tenor.com/search/happy+cat-stickers">Happy Cat Stickers</a>
+    </div>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
     <button class="btn" id="clickButton">Click Me</button>
     <div class="settings-icon" id="settingsIcon"></div>
@@ -247,10 +249,17 @@
 
         button.addEventListener('click', () => {
             gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
-                button.style.display = 'none';
-                page2.style.display = 'flex';
-                gsap.to(page2, { opacity: 1, duration: 1, ease: "power3.inOut" });
-            }});
+                button.style.display = "none";
+                page2.style.display = "block";
+            } });
+        });
+
+        settingsIcon.addEventListener('mouseenter', () => {
+            settingsTooltip.style.opacity = 1;
+        });
+
+        settingsIcon.addEventListener('mouseleave', () => {
+            settingsTooltip.style.opacity = 0;
         });
 
         settingsIcon.addEventListener('click', () => {
