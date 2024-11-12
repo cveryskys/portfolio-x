@@ -32,7 +32,7 @@
             animation: bg-animation .2s infinite;
             opacity: .9;
             visibility: hidden;
-            z-index: -1; /* Set background z-index to -1 */
+            z-index: -1;
         }
 
         @keyframes bg-animation {
@@ -65,49 +65,6 @@
             transform: scale(1.1);
         }
 
-        .settings-icon {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 30px;
-            height: 30px;
-            background-color: #333333;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .settings-icon:hover {
-            background-color: #000000;
-        }
-
-        .settings-icon::before {
-            content: '⚙️';
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        .tooltip {
-            position: absolute;
-            bottom: 60px;
-            left: 20px;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .settings-icon:hover + .tooltip {
-            opacity: 1;
-        }
-
         .page2 {
             display: none;
             flex-direction: column;
@@ -122,27 +79,54 @@
             color: #FFFFFF;
         }
 
-        .button-group {
+        .scroll-frame {
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(17, 17, 17, 0), #111111, rgba(17, 17, 17, 0));
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
         }
 
-        .nav-button {
+        .profile-button {
             font-size: 24px;
             font-weight: bold;
-            padding: 15px 30px;
-            border-radius: 15px;
-            background-color: #444444;
+            padding: 10px 20px;
+            background-color: #333333;
             color: #FFFFFF;
             border: none;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
-        .nav-button:hover {
-            background-color: #555555;
-            transform: scale(1.05);
+        .profile-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            background-color: #777777;
+            box-shadow: 0 4px 8px rgba(192, 192, 192, 0.5);
+        }
+
+        .tooltip-profile {
+            display: none;
+            position: absolute;
+            top: -35px;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-button:hover .tooltip-profile {
+            display: block;
+            opacity: 1;
         }
     </style>
 </head>
@@ -151,17 +135,15 @@
     <div class="bg"></div>
 
     <button class="btn" id="clickButton">Click Me</button>
-    <div class="settings-icon" id="settingsIcon"></div>
-    <div class="tooltip" id="tooltipText">Disable static effect</div>
 
     <!-- Second Page Content -->
     <div class="page2" id="page2">
-        <div class="welcome-text">Welcome to my portfolio<3</div>
-        <div class="button-group">
-            <button class="nav-button">Work Gallery</button>
-            <button class="nav-button">Marketplace</button>
-            <button class="nav-button">Pricing</button>
-            <button class="nav-button" id="infoButton">Info</button>
+        <div class="welcome-text">Welcome to my portfolio</div>
+        <div class="scroll-frame">
+            <button class="profile-button" onclick="window.open('https://www.roblox.com/users/24830794/profile', '_blank')">
+                <span class="tooltip-profile">My Roblox Profile</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Roblox_Logo_Black.svg" alt="Roblox Logo" width="24" height="24" />
+            </button>
         </div>
     </div>
 
@@ -169,10 +151,7 @@
     <script>
         let button = document.getElementById('clickButton');
         let bg = document.querySelector('.bg');
-        let settingsIcon = document.getElementById('settingsIcon');
-        let tooltipText = document.getElementById('tooltipText');
         let page2 = document.getElementById('page2');
-        let backgroundEnabled = true;
 
         button.addEventListener('mouseenter', () => {
             button.style.transform = 'scale(1.1)';
@@ -191,14 +170,8 @@
                 button.style.display = 'none';
                 bg.style.visibility = 'visible';
                 page2.style.display = 'flex';
-                setTimeout(() => page2.style.opacity = 1, 100); // Fade-in effect
+                setTimeout(() => page2.style.opacity = 1, 100);
             }, 1000);
-        });
-
-        settingsIcon.addEventListener('click', () => {
-            backgroundEnabled = !backgroundEnabled;
-            bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
-            tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
     </script>
 
