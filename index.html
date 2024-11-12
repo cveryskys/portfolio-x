@@ -1,1 +1,131 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>P</title><style>body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:#000;transition:all .5s;}#i{width:200px;height:200px;background:#761010;border-radius:15px;display:flex;justify-content:center;align-items:center;cursor:pointer;transition:.5s;}#i:hover{width:220px;height:220px;border-radius:30px;}#b{font-size:20px;color:#fff;text-align:center;background:linear-gradient(90deg,#ff7e5f,#feb47b);-webkit-background-clip:text;background-clip:text;border:none;cursor:pointer;transition:.3s;}#i.active{width:100vw;height:100vh;border-radius:0;background:#240303;}#i.active #b{font-size:10px;transform:scale(0);opacity:0;}#b:active{opacity:0;}#f{position:absolute;width:300px;height:200px;background:#240303;border-radius:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:.5s;box-shadow:0 0 10px rgba(255,255,255,.5);}#f.active{opacity:1;box-shadow:0 0 15px 5px rgba(255,255,255,.8);}#t{color:#fff;font-size:28px;}#w{width:80%;height:2px;background:#fff;margin:10px 0;}#l{color:#fff;font-size:18px;}#f:hover{box-shadow:0 0 30px rgba(255,255,255,.9);}</style></head><body><div id="i"><button id="b">Click Me</button></div><div id="f"><div id="t">Ayden Portfolio</div><div id="w"></div><div id="l">JavaScript, Python, Java, C++</div></div><script>const i=document.querySelector('#i'),b=document.querySelector('#b'),f=document.querySelector('#f');i.addEventListener('click',()=>{i.classList.add('active');b.style.opacity='0';setTimeout(()=>{document.body.style.backgroundColor='#240303';f.classList.add('active');},500);});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .frame {
+      width: 300px;
+      height: 100px;
+      background-color: #761010;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .frame:hover {
+      transform: scale(1.1);
+    }
+
+    .frame:hover .text {
+      transform: rotate(15deg);
+    }
+
+    .text {
+      font-size: 22px;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .frame.active {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      background: linear-gradient(to bottom, #8B0000, #3E0000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .portfolio-frame {
+      width: 80%;
+      height: 80%;
+      background-color: black;
+      border-radius: 15px;
+      border: 3px solid white;
+      position: relative;
+      padding: 20px;
+      overflow: auto;
+      transition: all 0.5s ease;
+    }
+
+    .portfolio-frame h1, .portfolio-frame p {
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .portfolio-frame h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-frame p {
+      font-size: 20px;
+    }
+
+    .portfolio-frame:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    /* Scroll effect */
+    .scrolling {
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="text">Read Me</div>
+  </div>
+
+  <script>
+    const frame = document.querySelector('.frame');
+    const text = document.querySelector('.text');
+    const body = document.body;
+
+    frame.addEventListener('click', () => {
+      frame.classList.add('active');
+      setTimeout(() => {
+        const portfolioFrame = document.createElement('div');
+        portfolioFrame.classList.add('portfolio-frame');
+        portfolioFrame.innerHTML = `
+          <h1>Ayden's Portfolio</h1>
+          <p>Most used languages are: Lua, Python, Java, HTML, and C#</p>
+        `;
+        body.appendChild(portfolioFrame);
+
+        let scrollEffect = true;
+        window.addEventListener('scroll', () => {
+          if (scrollEffect) {
+            portfolioFrame.style.transform = 'scale(1.1)';
+            portfolioFrame.style.opacity = '0.9';
+            portfolioFrame.style.top = `${-window.scrollY}px`;
+          }
+        });
+      }, 500);
+    });
+
+  </script>
+</body>
+</html>
