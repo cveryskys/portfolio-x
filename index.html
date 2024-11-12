@@ -35,19 +35,19 @@
             animation: bg-animation 1.5s steps(10) infinite;
         }
 
-        /* Keyframes for static background animation */
+        /* New keyframes for static background animation */
         @keyframes bg-animation {
-            0% { opacity: 0.1; }
-            10% { opacity: 0.2; }
-            20% { opacity: 0.3; }
-            30% { opacity: 0.5; }
-            40% { opacity: 0.7; }
-            50% { opacity: 0.9; }
-            60% { opacity: 1; }
-            70% { opacity: 0.7; }
-            80% { opacity: 0.5; }
-            90% { opacity: 0.2; }
-            100% { opacity: 0.1; }
+            0% { transform: translate(0,0); }
+            10% { transform: translate(-5%,-5%); }
+            20% { transform: translate(-10%,5%); }
+            30% { transform: translate(5%,-10%); }
+            40% { transform: translate(-5%,15%); }
+            50% { transform: translate(-10%,5%); }
+            60% { transform: translate(15%,0); }
+            70% { transform: translate(0,10%); }
+            80% { transform: translate(-15%,0); }
+            90% { transform: translate(10%,5%); }
+            100% { transform: translate(5%,0); }
         }
 
         .title {
@@ -117,15 +117,15 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Roblox button reverted */
+        /* Light gray Roblox button */
         .roblox-button {
             bottom: 20px;
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: #333333;
+            background-color: #D3D3D3; /* Light gray */
             border-radius: 10px;
-            color: #CCCCCC;
+            color: #333333;
             font-size: 1.5em;
             text-decoration: none;
             display: flex;
@@ -142,11 +142,11 @@
         }
 
         .divider {
-            width: 100%;
+            width: 80%;
             height: 2px;
             background: linear-gradient(to right, transparent, #ffffff, transparent);
-            position: absolute;
-            bottom: 80px;
+            margin: 20px 0;
+            opacity: 0.8;
         }
 
         .page2 .nav-button {
@@ -162,12 +162,12 @@
             color: #FFFFFF;
             width: 100%;
             max-height: 100vh;
-            overflow-y: auto; /* Enable scrolling for entire content */
+            overflow-y: auto;
             padding: 20px;
         }
 
         .video-wrapper {
-            width: 85%; /* Slightly smaller frame */
+            width: 85%;
             max-width: 1000px;
             height: 60vh;
             padding: 10px;
@@ -198,6 +198,7 @@
             font-weight: bold;
             border-radius: 10px;
             text-decoration: none;
+            margin-bottom: 20px;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
 
@@ -263,13 +264,15 @@
             <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
         <div class="label-text">Gesiha Morph System</div>
+        <a href="https://www.roblox.com/games/PLACE_ID" target="_blank" class="game-link-btn">Game Link</a>
+
+        <div class="divider"></div>
 
         <!-- Video 2 -->
         <div class="video-wrapper">
             <iframe src="https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
         <div class="label-text">Door System</div>
-        
         <a href="https://www.roblox.com/games/PLACE_ID" target="_blank" class="game-link-btn">Game Link</a>
     </div>
 
