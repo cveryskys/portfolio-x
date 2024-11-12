@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>portfolio</title>
   <style>
     body {
       margin: 0;
@@ -26,9 +26,9 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: all 0.3s ease;
       position: relative;
       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
     }
 
     .frame:hover {
@@ -44,6 +44,7 @@
       font-family: 'Arial', sans-serif;
       color: white;
       transition: all 0.3s ease;
+      text-transform: lowercase;
     }
 
     .frame.active {
@@ -54,6 +55,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     .portfolio-frame {
@@ -82,11 +86,6 @@
       font-size: 20px;
     }
 
-    .portfolio-frame:hover {
-      transform: scale(1.05);
-      opacity: 0.95;
-    }
-
     /* Scroll effect */
     .scrolling {
       transition: transform 0.5s ease, opacity 0.5s ease;
@@ -96,7 +95,7 @@
 </head>
 <body>
   <div class="frame">
-    <div class="text">Read Me</div>
+    <div class="text">read me</div>
   </div>
 
   <script>
@@ -105,16 +104,23 @@
     const body = document.body;
 
     frame.addEventListener('click', () => {
+      // Animate the red frame to take over the screen
       frame.classList.add('active');
+      
+      // Debrief/remove the "read me" text after click
+      text.style.opacity = '0';
+      
+      // Create portfolio frame inside the full screen red background
       setTimeout(() => {
         const portfolioFrame = document.createElement('div');
         portfolioFrame.classList.add('portfolio-frame');
         portfolioFrame.innerHTML = `
-          <h1>Ayden's Portfolio</h1>
-          <p>Most used languages are: Lua, Python, Java, HTML, and C#</p>
+          <h1>ayden's portfolio</h1>
+          <p>most used langs are: lua, python, java, html, and c#</p>
         `;
         body.appendChild(portfolioFrame);
 
+        // Enable scrolling effect on the portfolio frame
         let scrollEffect = true;
         window.addEventListener('scroll', () => {
           if (scrollEffect) {
@@ -123,7 +129,7 @@
             portfolioFrame.style.top = `${-window.scrollY}px`;
           }
         });
-      }, 500);
+      }, 500); // Delay to let the frame tween into place before adding portfolio content
     });
 
   </script>
