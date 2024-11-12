@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        /* Make the page background black */
-        body {
-            background-color: black;
-            margin: 0;
-            height: 100vh; /* Full viewport height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+    }
 
-        /* The square properties */
-        .square {
-            width: 200px;
-            height: 200px;
-            background-color: darkred;
-            margin: 0 auto;
-            border-radius: 0;
-            transition: all 0.3s ease; /* Smooth transition for all properties */
-        }
+    #a {
+      width: 200px;
+      height: 200px;
+      background-color: #8b0000;
+      margin: 50vh auto 0;
+      position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        /* Hover effect to make the square bigger and round the corners */
-        .square:hover {
-            border-radius: 25px; /* Rounded corners */
-            transform: scale(1.1); /* Slightly increase size */
-        }
+    #a:hover {
+      border-radius: 25%;
+      transform: scale(1.1);
+    }
 
-        /* Adding moving background patterns */
-        .background-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/dark-embossed.png');
-            background-size: 200px 200px;
-            animation: movePattern 10s linear infinite;
-            pointer-events: none;
-        }
+    .text {
+      color: white;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      transition: opacity 0.5s ease;
+    }
 
-        /* Animation for background pattern to move */
-        @keyframes movePattern {
-            0% {
-                transform: translateX(0) translateY(0);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%);
-            }
-        }
-    </style>
+    .frame {
+      position: absolute;
+      border: 1px solid white;
+      opacity: 0.5;
+      animation: moveFrames 5s linear infinite;
+      width: 50px;
+      height: 50px;
+    }
+
+    @keyframes moveFrames {
+      0% { top: 0; }
+      100% { top: 100vh; }
+    }
+
+    #a.full {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="background-pattern"></div>
-    <div class="square"></div>
+  <div id="a">
+    <div class="text" id="b">Click me</div>
+  </div>
+
+  <script>
+    const a = document.getElementById('a');
+    const b = document.getElementById('b');
+
+    a.addEventListener('click', () => {
+      a.classList.add('full');
+      b.style.opacity = '0';
+      setTimeout(() => {
+        b.style.display = 'none';
+      }, 500);
+      for (let i = 0; i < 20; i++) {
+        const frame = document.createElement('div');
+        frame.className = 'frame';
+        frame.style.left = Math.random() * window.innerWidth + 'px';
+        document.body.appendChild(frame);
+      }
+    });
+  </script>
 </body>
 </html>
