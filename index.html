@@ -25,7 +25,7 @@
             flex-direction: column;
         }
 
-        /* Header (Portfolio <3) */
+        /* Header */
         h1 {
             font-size: 36px;
             color: #6A4C93; /* Soft purple for header */
@@ -40,50 +40,26 @@
         .btn {
             background-color: #FFC0CB; /* Soft pink for button */
             color: #3D3B49; /* Dark text on light button */
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             padding: 20px 40px;
             border-radius: 30px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            text-align: center;
             transform: translate(-50%, -50%);
             position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .btn:hover {
-            transform: scale(1.1) translate(-50%, -50%);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translate(-50%, -50%) scale(1.2); /* Make button larger on hover */
         }
 
-        /* Second Page (Message Box and Stars) */
-        .message-container {
-            display: none;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-size: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .message-container p {
-            font-size: 24px;
-            margin: 10px;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        /* Stars animation */
+        /* Second Page (Stars Animation) */
         .stars {
             position: absolute;
             top: 0;
@@ -94,7 +70,8 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            opacity: 0.5;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .star {
@@ -119,70 +96,50 @@
             animation-duration: 1.5s;
         }
 
-        /* Small styling for scrollable container */
-        .scroll-container {
-            overflow-y: scroll;
-            height: 200px;
-            width: 90%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #FFF;
-            border-radius: 10px;
-            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-            font-family: 'Roboto', sans-serif;
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- First Page: Portfolio Button -->
     <h1>portfolio<3</h1>
-    <button class="btn" id="clickButton">click me ༊*·˚</button>
+    <button class="btn" id="clickButton">click me</button>
 
-    <!-- Second Page: Hidden message and stars animation -->
-    <div class="message-container" id="messageContainer">
-        <p>Aydens Portfolio</p>
-        <p>Most used langs: Lua, Python, Java, HTML, and C#</p>
-        <div class="scroll-container">
-            <p>Scroll down to explore more...</p>
-        </div>
-        <div class="stars">
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <!-- More stars can be added here if needed -->
-        </div>
+    <!-- Stars container -->
+    <div class="stars" id="starsContainer">
+        <!-- Stars will be added dynamically via JavaScript -->
     </div>
 
     <script>
-        // JavaScript for button click and transition
         let button = document.getElementById('clickButton');
-        let messageContainer = document.getElementById('messageContainer');
+        let starsContainer = document.getElementById('starsContainer');
         let clicked = false;
 
         button.addEventListener('click', () => {
             if (!clicked) {
                 clicked = true;
+                // Button transition to fullscreen
                 button.style.transition = 'all 1s ease';
-                button.style.transform = 'scale(20)';
+                button.style.transform = 'translate(-50%, -50%) scale(20)';
                 button.style.opacity = '0';
 
+                // Delay the stars animation to trigger after button transitions
                 setTimeout(() => {
-                    messageContainer.style.display = 'flex';
-                    messageContainer.style.animation = 'fadeIn 1s';
-                }, 1000);  // Delay to match button animation
+                    button.style.display = 'none'; // Remove button from the screen
+                    starsContainer.style.opacity = 1; // Make stars visible
+                    starsContainer.style.animation = 'fadeIn 1s';
+
+                    // Create star elements dynamically
+                    for (let i = 0; i < 50; i++) {
+                        let star = document.createElement('div');
+                        star.classList.add('star');
+                        star.style.top = `${Math.random() * 100}%`;
+                        star.style.left = `${Math.random() * 100}%`;
+                        starsContainer.appendChild(star);
+                    }
+                }, 1000); // 1 second delay to match the button transition
             }
         });
 
-        // CSS animation for fade-in effect
+        // CSS animation for fade-in effect of stars
         setTimeout(() => {
             document.styleSheets[0].insertRule(`
                 @keyframes fadeIn {
