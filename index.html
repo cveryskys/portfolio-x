@@ -5,22 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <style>
-        /* Style for the square */
+        /* Make the page background black */
+        body {
+            background-color: black;
+            margin: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* The square properties */
         .square {
             width: 200px;
             height: 200px;
-            background-color: black;
+            background-color: darkred;
             margin: 0 auto;
-            transition: border-radius 0.3s ease; /* Smooth transition for corner radius */
+            border-radius: 0;
+            transition: all 0.3s ease; /* Smooth transition for all properties */
         }
 
-        /* Hover effect to change corner radius */
+        /* Hover effect to make the square bigger and round the corners */
         .square:hover {
-            border-radius: 25px; /* Smooth corner radius change on hover */
+            border-radius: 25px; /* Rounded corners */
+            transform: scale(1.1); /* Slightly increase size */
+        }
+
+        /* Adding moving background patterns */
+        .background-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dark-embossed.png');
+            background-size: 200px 200px;
+            animation: movePattern 10s linear infinite;
+            pointer-events: none;
+        }
+
+        /* Animation for background pattern to move */
+        @keyframes movePattern {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
         }
     </style>
 </head>
 <body>
+    <div class="background-pattern"></div>
     <div class="square"></div>
 </body>
 </html>
