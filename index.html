@@ -5,30 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
   <style>
-    /* gen bdy style */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       background-color: #000000;
-      opacity: 1;
       background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #000000 40px),
                         repeating-linear-gradient(#76101055, #761010);
-      background-size: 100% 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      animation: moveBackground 10s linear infinite;
+      transition: all 0.5s ease;
     }
-    @keyframes moveBackground {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 100% 100%;
-      }
-    }
+
     .square {
       width: 200px;
       height: 200px;
@@ -40,11 +29,13 @@
       cursor: pointer;
       transition: all 0.5s ease;
     }
+
     .square:hover {
       width: 220px;
       height: 220px;
       border-radius: 30px;
     }
+
     .text-button {
       font-size: 20px;
       font-family: 'Arial', sans-serif;
@@ -57,31 +48,22 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+
     .square.active {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
-      background-color: #761010;
-      cursor: default;
-    }
-    .square .text-button:active {
-      opacity: 0;
-    }
-    .inactive {
-      pointer-events: none;
-    }
-    .debris {
-      animation: fadeBackground 2s ease-out forwards;
+      background-color: #240303;
     }
 
-    @keyframes fadeBackground {
-      0% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        background-color: transparent;
-      }
+    .square.active .text-button {
+      font-size: 10px;
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    .text-button:active {
+      opacity: 0;
     }
 
   </style>
@@ -94,28 +76,14 @@
   <script>
     const square = document.querySelector('.square');
     const button = document.querySelector('.text-button');
-    const body = document.querySelector('body');
+
     square.addEventListener('click', () => {
       square.classList.add('active');
       button.style.opacity = '0';
-      square.classList.add('inactive');
       setTimeout(() => {
-        body.classList.add('debris');
+        document.body.style.backgroundColor = "#240303";
+        document.body.style.backgroundImage = "repeating-radial-gradient(circle at 0 0, transparent 0, #240303 40px), repeating-linear-gradient(#00000055, #000000)";
       }, 500);
-    });
-    square.addEventListener('mouseenter', () => {
-      if (!square.classList.contains('active')) {
-        square.style.width = '220px';
-        square.style.height = '220px';
-        square.style.borderRadius = '30px';
-      }
-    });
-    square.addEventListener('mouseleave', () => {
-      if (!square.classList.contains('active')) {
-        square.style.width = '200px';
-        square.style.height = '200px';
-        square.style.borderRadius = '15px';
-      }
     });
   </script>
 </body>
