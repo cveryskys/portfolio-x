@@ -3,40 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Stylized Button</title>
+    <title>Minimalist Button</title>
     <style>
+        /* Global reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body background and text color */
         body {
-            background-color: #ffcccc; /* Light pink background */
+            background-color: #F4F1F1; /* Light off-white */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            font-family: 'Roboto', sans-serif;
         }
 
+        /* Button Styles */
         .btn {
-            background-color: #ff6699; /* Pink button color */
-            color: white;
-            font-size: 18px;
+            background-color: #3D3B49; /* Dark purple */
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
             padding: 20px 40px;
-            border-radius: 50px;
+            border-radius: 30px;
             text-align: center;
             cursor: pointer;
             border: none;
-            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
             transform: translate(-50%, -50%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: absolute;
         }
 
         .btn:hover {
             transform: scale(1.1) translate(-50%, -50%);
-            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .btn:active {
             transform: scale(1) translate(-50%, -50%);
         }
 
+        /* Message container */
         .message-container {
             display: none;
             text-align: center;
@@ -46,7 +58,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.7);
-            color: white;
+            color: #fff;
             font-size: 24px;
             padding: 20px;
             justify-content: center;
@@ -54,21 +66,24 @@
         }
 
         .message-container p {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: bold;
+            color: #D0D0D0; /* Light grey */
         }
 
+        /* Glow effect for text */
         .glow {
-            text-shadow: 0 0 10px #ff6699, 0 0 20px #ff6699, 0 0 30px #ff6699, 0 0 40px #ff6699;
+            text-shadow: 0 0 10px #D0D0D0, 0 0 20px #D0D0D0, 0 0 30px #D0D0D0;
         }
 
     </style>
 </head>
 <body>
-    <!-- Button -->
-    <button class="btn" id="clickButton">Read Me</button>
 
-    <!-- Hidden Message Container -->
+    <!-- Button that says "Click me" -->
+    <button class="btn" id="clickButton">click me ༊*·˚</button>
+
+    <!-- Hidden message container -->
     <div class="message-container" id="messageContainer">
         <p>Aydens Portfolio</p>
         <p>Most used langs: Lua, Python, Java, HTML, and C#</p>
@@ -83,7 +98,7 @@
             if (!clicked) {
                 clicked = true;
 
-                // Tween button to full screen
+                // Tween button to full screen (center to full)
                 button.style.transition = 'all 1s ease';
                 button.style.transform = 'scale(20)';
                 button.style.opacity = '0';
@@ -96,7 +111,7 @@
             }
         });
 
-        // CSS animation for fade in
+        // CSS animation for fade-in effect
         setTimeout(() => {
             document.styleSheets[0].insertRule(`
                 @keyframes fadeIn {
@@ -106,5 +121,6 @@
             `, 0);
         }, 0);
     </script>
+
 </body>
 </html>
