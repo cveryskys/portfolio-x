@@ -13,22 +13,22 @@
 
         body {
             background-color: #111111;
-            margin: 0;
             overflow-x: hidden;
             position: relative;
-            height: 200vh;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .bg {
             position: fixed;
             top: -50%;
             left: -50%;
-            right: -50%;
-            bottom: -50%;
             width: 200%;
             height: 200vh;
             background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-            background-repeat: repeat;
             animation: bg-animation .2s infinite;
             opacity: .9;
             visibility: hidden;
@@ -50,7 +50,7 @@
 
         h1 {
             font-size: 36px;
-            color: #000000;
+            color: #FFFFFF;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             letter-spacing: 3px;
@@ -61,16 +61,12 @@
         }
 
         .btn {
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #333333;
-            color: #FFFFFF;
             font-size: 24px;
             font-weight: bold;
             padding: 20px 40px;
             border-radius: 30px;
+            background-color: #333333;
+            color: #FFFFFF;
             border: none;
             cursor: pointer;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -122,6 +118,43 @@
         .settings-icon:hover + .tooltip {
             opacity: 1;
         }
+
+        .page2 {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            opacity: 0;
+        }
+
+        .welcome-text {
+            font-size: 48px;
+            color: #FFFFFF;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-button {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 15px;
+            background-color: #444444;
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #555555;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -129,36 +162,42 @@
     <div class="bg"></div>
 
     <h1 class="revealUp" id="portfolioText">PORTFOLIO<3</h1>
-    <button class="btn" id="clickButton">click me</button>
+    <button class="btn" id="clickButton">Click Me</button>
     <div class="settings-icon" id="settingsIcon"></div>
     <div class="tooltip" id="tooltipText">Disable static effect</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+    <!-- Second Page Content -->
+    <div class="page2" id="page2">
+        <div class="welcome-text">Welcome to my portfolio<3</div>
+        <div class="button-group">
+            <button class="nav-button">Work Gallery</button>
+            <button class="nav-button">Marketplace</button>
+            <button class="nav-button">Pricing</button>
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script>
         let button = document.getElementById('clickButton');
         let portfolioText = document.getElementById('portfolioText');
         let bg = document.querySelector('.bg');
         let settingsIcon = document.getElementById('settingsIcon');
         let tooltipText = document.getElementById('tooltipText');
+        let page2 = document.getElementById('page2');
         let backgroundEnabled = true;
-        let clicked = false;
 
         button.addEventListener('click', () => {
-            if (!clicked) {
-                clicked = true;
-                button.style.transition = 'all 1s ease';
-                button.style.transform = 'scale(20)';
-                button.style.opacity = '0';
+            button.style.transition = 'all 1s ease';
+            button.style.transform = 'scale(20)';
+            button.style.opacity = '0';
 
-                setTimeout(() => {
-                    button.style.display = 'none';
-                    portfolioText.style.opacity = 1;
-                    bg.style.visibility = 'visible';
-                }, 1000);
-            }
+            setTimeout(() => {
+                button.style.display = 'none';
+                portfolioText.style.opacity = 1;
+                bg.style.visibility = 'visible';
+                page2.style.display = 'flex';
+                setTimeout(() => page2.style.opacity = 1, 100); // Fade-in effect
+            }, 1000);
         });
 
         settingsIcon.addEventListener('click', () => {
@@ -167,24 +206,16 @@
             tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
 
-        gsap.utils.toArray(".revealUp").forEach(function (elem) {
-            gsap.fromTo(elem, 
-                { y: 100, autoAlpha: 0, rotate: 5 },
-                {
-                    duration: 1.25,
-                    y: 0,
-                    autoAlpha: 1,
-                    rotate: 0,
-                    ease: "back",
-                    scrollTrigger: {
-                        trigger: elem,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
+        gsap.fromTo("#portfolioText", 
+            { y: 100, autoAlpha: 0, rotate: 5 },
+            {
+                duration: 1.25,
+                y: 0,
+                autoAlpha: 1,
+                rotate: 0,
+                ease: "back",
+            }
+        );
     </script>
 
 </body>
