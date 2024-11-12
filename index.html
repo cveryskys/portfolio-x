@@ -138,6 +138,61 @@
             margin: 10px;
         }
 
+        /* Work Gallery Content */
+        .work-gallery-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            width: 100%;
+            max-height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
+            padding: 10px;
+            border: 2px solid #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .label-text {
+            font-size: 18px;
+            color: #CCCCCC;
+            margin-bottom: 10px;
+        }
+
+        .game-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .game-link-btn:hover {
+            background-color: #555555;
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
         /* Info Page Content */
         .info-page {
             display: none;
@@ -182,6 +237,15 @@
             color: #BBBBBB;
             line-height: 1.6;
             margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .description:hover {
+            transform: scale(1.02);
+        }
+
+        .description .bold {
+            font-weight: bold;
         }
 
         .back-button {
@@ -231,6 +295,27 @@
         </div>
     </div>
 
+    <!-- Work Gallery Content -->
+    <div class="work-gallery-content" id="workGalleryContent">
+        <button class="back-button" id="backButtonGallery">Back</button>
+        
+        <!-- Video 1 -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Gesiha Morph System</div>
+        <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" class="game-link-btn">Game Link</a>
+
+        <div class="divider"></div>
+
+        <!-- Video 2 -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Door System</div>
+        <a href="https://www.roblox.com/games/90856562619374/doors" target="_blank" class="game-link-btn">Game Link</a>
+    </div>
+
     <!-- Info Page Content -->
     <div class="info-page" id="infoPage">
         <button class="back-button" id="backButtonInfo">Back</button>
@@ -245,8 +330,13 @@
             </a>
         </p>
         <p class="description">
-            Hey there! I'm Ayden, a 19-year-old with over 6 years of scripting experience. I'm super fluent in <strong>Lua</strong> (my go-to!) 
-            and love creating cool stuff. I bring a passion for code and love pushing the limits of what I can make! 🙌
+            Hii! I'm Ayden, I'm <span class="bold">19</span>, currently taking <span class="bold">university classes online</span>, and I've been programming for over 
+            <span class="bold">6 years</span> on Roblox, and <span class="bold">4 years</span> using Python to create many things! I am constantly looking for work, 
+            and I'm always available to do anything you need. DM me <span class="bold">@screaming.silently</span> on Discord to see if my commissions are open and if I'm up to take your task! 
+            Please note that my top used languages may be a little off due to this html script being rather large-
+            <br><br>
+            <span class="bold">Please note:</span> Do not DM me if you can’t meet my pricing criteria, if you're not above the age of <span class="bold">13</span>, or if all you’re going to say is "<span class="bold">Hello</span>". Refer to: 
+            <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a>.
         </p>
     </div>
 
@@ -256,7 +346,9 @@
         let page2 = document.getElementById('page2');
         let workGalleryButton = document.getElementById('workGalleryButton');
         let infoButton = document.getElementById('infoButton');
+        let workGalleryContent = document.getElementById('workGalleryContent');
         let infoPage = document.getElementById('infoPage');
+        let backButtonGallery = document.getElementById('backButtonGallery');
         let backButtonInfo = document.getElementById('backButtonInfo');
         let settingsIcon = document.getElementById('settingsIcon');
         let settingsTooltip = document.getElementById('settingsTooltip');
@@ -272,12 +364,17 @@
 
         workGalleryButton.addEventListener('click', () => {
             page2.style.display = "none";
-            document.getElementById('workGalleryContent').style.display = "flex";
+            workGalleryContent.style.display = "flex";
         });
 
         infoButton.addEventListener('click', () => {
             page2.style.display = "none";
             infoPage.style.display = "block";
+        });
+
+        backButtonGallery.addEventListener('click', () => {
+            workGalleryContent.style.display = "none";
+            page2.style.display = "block";
         });
 
         backButtonInfo.addEventListener('click', () => {
