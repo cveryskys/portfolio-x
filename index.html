@@ -29,35 +29,8 @@
             width: 200%;
             height: 200vh;
             background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-            animation: bg-animation .2s infinite;
-            opacity: .9;
-            visibility: hidden;
-        }
-
-        @keyframes bg-animation {
-            0% { transform: translate(0,0) }
-            10% { transform: translate(-5%,-5%) }
-            20% { transform: translate(-10%,5%) }
-            30% { transform: translate(5%,-10%) }
-            40% { transform: translate(-5%,15%) }
-            50% { transform: translate(-10%,5%) }
-            60% { transform: translate(15%,0) }
-            70% { transform: translate(0,10%) }
-            80% { transform: translate(-15%,0) }
-            90% { transform: translate(10%,5%) }
-            100% { transform: translate(5%,0) }
-        }
-
-        h1 {
-            font-size: 36px;
-            color: #FFFFFF;
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            transform: translateY(100px);
+            opacity: 0.5;
+            z-index: -1; /* Keeps background behind all content */
         }
 
         .btn {
@@ -70,10 +43,20 @@
             border: none;
             cursor: pointer;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            animation: btn-entrance 1s ease forwards;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        @keyframes btn-entrance {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .btn:hover {
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
 
         .settings-icon {
@@ -88,11 +71,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            animation: settings-entrance 1.2s ease forwards;
+        }
+
+        @keyframes settings-entrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .settings-icon:hover {
             background-color: #000000;
+            transform: scale(1.1);
         }
 
         .settings-icon::before {
@@ -126,11 +119,27 @@
             text-align: center;
             gap: 20px;
             opacity: 0;
+            animation: page2-fadein 1s ease forwards;
+        }
+
+        @keyframes page2-fadein {
+            to {
+                opacity: 1;
+            }
         }
 
         .welcome-text {
             font-size: 48px;
             color: #FFFFFF;
+            opacity: 0;
+            animation: welcome-text-appear 1.5s ease forwards;
+        }
+
+        @keyframes welcome-text-appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .button-group {
@@ -149,11 +158,19 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            animation: nav-button-appear 1.5s ease forwards;
         }
 
         .nav-button:hover {
             background-color: #555555;
             transform: scale(1.05);
+        }
+
+        @keyframes nav-button-appear {
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -161,7 +178,6 @@
 
     <div class="bg"></div>
 
-    <h1 class="revealUp" id="portfolioText">PORTFOLIO<3</h1>
     <button class="btn" id="clickButton">Click Me</button>
     <div class="settings-icon" id="settingsIcon"></div>
     <div class="tooltip" id="tooltipText">Disable static effect</div>
@@ -176,25 +192,9 @@
         </div>
     </div>
 
-
-    <style>
-    .bg {
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200vh;
-        background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-        opacity: 0.5; 
-        visibility: visible;
-        z-index: -1;
-    }
-</style>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
         let button = document.getElementById('clickButton');
-        let portfolioText = document.getElementById('portfolioText');
         let bg = document.querySelector('.bg');
         let settingsIcon = document.getElementById('settingsIcon');
         let tooltipText = document.getElementById('tooltipText');
@@ -208,7 +208,6 @@
 
             setTimeout(() => {
                 button.style.display = 'none';
-                portfolioText.style.opacity = 1;
                 bg.style.visibility = 'visible';
                 page2.style.display = 'flex';
                 setTimeout(() => page2.style.opacity = 1, 100); // Fade-in effect
@@ -220,17 +219,6 @@
             bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
             tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
-
-        gsap.fromTo("#portfolioText", 
-            { y: 100, autoAlpha: 0, rotate: 5 },
-            {
-                duration: 1.25,
-                y: 0,
-                autoAlpha: 1,
-                rotate: 0,
-                ease: "back",
-            }
-        );
     </script>
 
 </body>
