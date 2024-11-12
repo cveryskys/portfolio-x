@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio <3</title>
     <style>
-        /* Global Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body styles */
         body {
-            background-color: #F7F7F7; /* Soft background color */
-            color: #333; /* Dark text color for contrast */
+            background-color: #F7F7F7;
+            color: #333;
             font-family: 'Roboto', sans-serif;
             display: flex;
             justify-content: center;
@@ -25,21 +23,21 @@
             flex-direction: column;
         }
 
-        /* Header */
         h1 {
             font-size: 36px;
-            color: #6A4C93; /* Soft purple for header */
+            color: #6A4C93;
             margin-bottom: 20px;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             letter-spacing: 3px;
             text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        /* Button */
         .btn {
-            background-color: #FFC0CB; /* Soft pink for button */
-            color: #3D3B49; /* Dark text on light button */
+            background-color: #FFC0CB;
+            color: #3D3B49;
             font-size: 24px;
             font-weight: bold;
             padding: 20px 40px;
@@ -48,7 +46,6 @@
             cursor: pointer;
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
             text-align: center;
-            transform: translate(-50%, -50%);
             position: absolute;
             left: 50%;
             top: 50%;
@@ -56,10 +53,9 @@
         }
 
         .btn:hover {
-            transform: translate(-50%, -50%) scale(1.2); /* Make button larger on hover */
+            transform: translate(-50%, -50%) scale(1.2);
         }
 
-        /* Second Page (Stars Animation) */
         .stars {
             position: absolute;
             top: 0;
@@ -96,38 +92,43 @@
             animation-duration: 1.5s;
         }
 
+        @keyframes fadeInStars {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
     </style>
 </head>
 <body>
 
-    <h1>portfolio<3</h1>
+    <h1 id="portfolioText">portfolio<3</h1>
     <button class="btn" id="clickButton">click me</button>
 
-    <!-- Stars container -->
-    <div class="stars" id="starsContainer">
-        <!-- Stars will be added dynamically via JavaScript -->
-    </div>
+    <div class="stars" id="starsContainer"></div>
 
     <script>
         let button = document.getElementById('clickButton');
         let starsContainer = document.getElementById('starsContainer');
+        let portfolioText = document.getElementById('portfolioText');
         let clicked = false;
 
         button.addEventListener('click', () => {
             if (!clicked) {
                 clicked = true;
-                // Button transition to fullscreen
                 button.style.transition = 'all 1s ease';
                 button.style.transform = 'translate(-50%, -50%) scale(20)';
                 button.style.opacity = '0';
 
-                // Delay the stars animation to trigger after button transitions
                 setTimeout(() => {
-                    button.style.display = 'none'; // Remove button from the screen
-                    starsContainer.style.opacity = 1; // Make stars visible
-                    starsContainer.style.animation = 'fadeIn 1s';
+                    button.style.display = 'none';
+                    starsContainer.style.opacity = 1;
+                    starsContainer.style.animation = 'fadeInStars 1s';
 
-                    // Create star elements dynamically
                     for (let i = 0; i < 50; i++) {
                         let star = document.createElement('div');
                         star.classList.add('star');
@@ -135,19 +136,12 @@
                         star.style.left = `${Math.random() * 100}%`;
                         starsContainer.appendChild(star);
                     }
-                }, 1000); // 1 second delay to match the button transition
+
+                    portfolioText.style.opacity = 1;
+                    portfolioText.style.animation = 'fadeInText 2s';
+                }, 1000);
             }
         });
-
-        // CSS animation for fade-in effect of stars
-        setTimeout(() => {
-            document.styleSheets[0].insertRule(`
-                @keyframes fadeIn {
-                    0% { opacity: 0; }
-                    100% { opacity: 1; }
-                }
-            `, 0);
-        }, 0);
     </script>
 
 </body>
