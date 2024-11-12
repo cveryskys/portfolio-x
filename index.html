@@ -106,19 +106,21 @@
             transition: opacity 0.3s ease;
         }
 
+        /* Updated Roblox button */
         .roblox-button {
             bottom: 20px;
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: #333333;
+            background-color: #D3D3D3; /* Light Grey */
             border-radius: 10px;
-            color: #CCCCCC;
+            color: #333333;
             font-size: 1.5em;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .roblox-button:hover {
@@ -126,6 +128,10 @@
             transform: translateY(-5px);
             box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
             color: #ffffff;
+        }
+
+        .roblox-button:active {
+            background-color: #555555; /* Dark Grey on Click */
         }
 
         .divider {
@@ -140,29 +146,34 @@
             margin: 10px;
         }
 
-        /* Work Gallery Content */
+        /* Work Gallery Content (Page 3) */
         .work-gallery-content {
             display: none;
             flex-direction: column;
             align-items: center;
             text-align: center;
             color: #FFFFFF;
+            width: 100%;
+            max-height: 100vh;
+            overflow-y: auto; /* Enable scrolling for the entire content */
             padding: 20px;
         }
 
         .video-wrapper {
-            overflow-x: auto;
-            width: 100%;
-            max-width: 960px;
+            width: 90%; /* Make the video box nearly full-width */
+            max-width: 1200px;
+            height: 80vh;
             padding: 10px;
             border: 2px solid #333333;
             border-radius: 10px;
+            overflow: hidden;
             margin-bottom: 20px;
         }
 
         .video-wrapper iframe {
-            width: 1200px;
-            height: 500px;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
         }
 
         .label-text {
@@ -236,7 +247,7 @@
         </div>
     </div>
 
-    <!-- Work Gallery Content -->
+    <!-- Work Gallery Content (Page 3) -->
     <div class="work-gallery-content" id="workGalleryContent">
         <button class="back-button" id="backButton">Back</button>
         <div class="video-wrapper">
