@@ -29,15 +29,25 @@
             width: 200%;
             height: 200vh;
             background: url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-            animation: bg-animation 0.2s infinite;
             opacity: 0.9;
             visibility: visible;
             z-index: -1;
+            animation: bg-animation 1.5s steps(10) infinite;
         }
 
+        /* Keyframes for static background animation */
         @keyframes bg-animation {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(5%, 5%); }
+            0% { opacity: 0.1; }
+            10% { opacity: 0.2; }
+            20% { opacity: 0.3; }
+            30% { opacity: 0.5; }
+            40% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+            60% { opacity: 1; }
+            70% { opacity: 0.7; }
+            80% { opacity: 0.5; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0.1; }
         }
 
         .title {
@@ -45,6 +55,7 @@
             color: #FFFFFF;
             margin-bottom: 20px;
             text-align: center;
+            animation: fadeIn 1s ease;
         }
 
         .btn, .nav-button {
@@ -106,21 +117,21 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Updated Roblox button */
+        /* Roblox button reverted */
         .roblox-button {
             bottom: 20px;
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: #D3D3D3; /* Light Grey */
+            background-color: #333333;
             border-radius: 10px;
-            color: #333333;
+            color: #CCCCCC;
             font-size: 1.5em;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s, background-color 0.3s;
         }
 
         .roblox-button:hover {
@@ -128,10 +139,6 @@
             transform: translateY(-5px);
             box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
             color: #ffffff;
-        }
-
-        .roblox-button:active {
-            background-color: #555555; /* Dark Grey on Click */
         }
 
         .divider {
@@ -155,14 +162,14 @@
             color: #FFFFFF;
             width: 100%;
             max-height: 100vh;
-            overflow-y: auto; /* Enable scrolling for the entire content */
+            overflow-y: auto; /* Enable scrolling for entire content */
             padding: 20px;
         }
 
         .video-wrapper {
-            width: 90%; /* Make the video box nearly full-width */
-            max-width: 1200px;
-            height: 80vh;
+            width: 85%; /* Slightly smaller frame */
+            max-width: 1000px;
+            height: 60vh;
             padding: 10px;
             border: 2px solid #333333;
             border-radius: 10px;
@@ -250,10 +257,19 @@
     <!-- Work Gallery Content (Page 3) -->
     <div class="work-gallery-content" id="workGalleryContent">
         <button class="back-button" id="backButton">Back</button>
+        
+        <!-- Video 1 -->
         <div class="video-wrapper">
             <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
         <div class="label-text">Gesiha Morph System</div>
+
+        <!-- Video 2 -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Door System</div>
+        
         <a href="https://www.roblox.com/games/PLACE_ID" target="_blank" class="game-link-btn">Game Link</a>
     </div>
 
