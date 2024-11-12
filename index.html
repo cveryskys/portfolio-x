@@ -130,23 +130,10 @@
             height: 2px;
             background: linear-gradient(to right, transparent, #ffffff, transparent);
             position: absolute;
-            bottom: 10px;
+            bottom: 80px;
         }
 
-        /* Scrolling Frame */
-        .scrolling-frame {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            height: 60vh;
-            padding: 20px;
-            background-color: #222222;
-            border-radius: 10px;
-            width: 80%;
-        }
-
-        /* Roblox Button */
+        /* Roblox Button at the Bottom */
         .roblox-button {
             display: flex;
             align-items: center;
@@ -160,6 +147,8 @@
             color: #CCCCCC;
             font-size: 1.5em;
             text-decoration: none;
+            position: absolute;
+            bottom: 20px;
         }
 
         .roblox-button:hover {
@@ -171,7 +160,7 @@
 
         .tooltip {
             position: absolute;
-            bottom: 90px;
+            bottom: 120px;
             background-color: #000000;
             color: #FFFFFF;
             padding: 5px 10px;
@@ -195,23 +184,24 @@
 
     <!-- Second Page Content -->
     <div class="page2" id="page2">
-        <div class="scrolling-frame">
-            <div class="button-group">
-                <button class="nav-button">Work Gallery</button>
-                <button class="nav-button">Marketplace</button>
-                <button class="nav-button">Pricing</button>
-                <button class="nav-button">Info</button>
-            </div>
-            <a href="https://www.roblox.com/users/24830794/profile" target="_blank" class="roblox-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
-                </svg>
-            </a>
-            <div class="tooltip">My Roblox Profile</div>
+        <div class="button-group">
+            <button class="nav-button">Work Gallery</button>
+            <button class="nav-button">Marketplace</button>
+            <button class="nav-button">Pricing</button>
+            <button class="nav-button">Info</button>
         </div>
     </div>
 
+    <!-- Divider -->
     <div class="divider"></div>
+
+    <!-- Roblox Button and Tooltip at the Bottom -->
+    <a href="https://www.roblox.com/users/24830794/profile" target="_blank" class="roblox-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
+        </svg>
+    </a>
+    <div class="tooltip">My Roblox Profile</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
