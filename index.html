@@ -95,13 +95,31 @@
         }
 
         .settings-icon:hover {
-            background-color: #6A4C93;
+            background-color: #000000;
         }
 
         .settings-icon::before {
             content: '⚙️';
             font-size: 18px;
             color: #FFFFFF;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 60px;
+            left: 20px;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .settings-icon:hover + .tooltip {
+            opacity: 1;
         }
     </style>
 </head>
@@ -112,12 +130,14 @@
     <h1 id="portfolioText">portfolio<3</h1>
     <button class="btn" id="clickButton">click me</button>
     <div class="settings-icon" id="settingsIcon"></div>
+    <div class="tooltip" id="tooltipText">Disable static effect</div>
 
     <script>
         let button = document.getElementById('clickButton');
         let portfolioText = document.getElementById('portfolioText');
         let bg = document.querySelector('.bg');
         let settingsIcon = document.getElementById('settingsIcon');
+        let tooltipText = document.getElementById('tooltipText');
         let backgroundEnabled = true;
         let clicked = false;
 
@@ -140,6 +160,7 @@
         settingsIcon.addEventListener('click', () => {
             backgroundEnabled = !backgroundEnabled;
             bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
+            tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
     </script>
 
