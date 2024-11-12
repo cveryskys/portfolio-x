@@ -28,22 +28,23 @@
             left: -50%;
             width: 200%;
             height: 200vh;
-            background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-            animation: bg-animation .2s infinite;
-            opacity: .9;
+            background: url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+            animation: bg-animation 0.2s infinite;
+            opacity: 0.9;
             visibility: visible;
             z-index: -1;
         }
 
         @keyframes bg-animation {
-            0% { transform: translate(0,0) }
-            100% { transform: translate(5%,0) }
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 5%); }
         }
 
         .title {
             font-size: 28px;
             color: #FFFFFF;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .btn, .nav-button {
@@ -62,6 +63,71 @@
             transform: scale(1.1);
         }
 
+        .settings-icon, .roblox-button {
+            position: fixed;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .settings-icon {
+            bottom: 20px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: #333333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .settings-icon:hover {
+            background-color: #000000;
+        }
+
+        .settings-icon::before {
+            content: '⚙️';
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+        .settings-tooltip {
+            position: absolute;
+            bottom: 60px;
+            left: 20px;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .roblox-button {
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #333333;
+            border-radius: 10px;
+            color: #CCCCCC;
+            font-size: 1.5em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .roblox-button:hover {
+            background-color: #888888;
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
+            color: #ffffff;
+        }
+
         .divider {
             width: 100%;
             height: 2px;
@@ -70,19 +136,33 @@
             bottom: 80px;
         }
 
+        .page2 .nav-button {
+            margin: 10px;
+        }
+
+        /* Work Gallery Content */
         .work-gallery-content {
             display: none;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            overflow-x: auto;
+            width: 100%;
+            max-width: 960px;
+            padding: 10px;
+            border: 2px solid #333333;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .video-wrapper iframe {
-            width: 80%;
-            max-width: 640px;
-            height: 360px;
-            border-radius: 10px;
-            border: 2px solid #333333;
-            margin-bottom: 10px;
+            width: 1200px;
+            height: 500px;
         }
 
         .label-text {
@@ -108,15 +188,44 @@
             transform: translateY(-5px);
             box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
         }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #555555;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg"></div>
+    <div class="bg" id="backgroundEffect"></div>
     <h1 class="title">Welcome to my portfolio! <3</h1>
 
     <button class="btn" id="clickButton">Click Me</button>
     <div class="divider"></div>
+
+    <div class="settings-icon" id="settingsIcon"></div>
+    <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
+
+    <div class="roblox-button" id="robloxButton">
+        <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
+            </svg>
+        </a>
+    </div>
 
     <div class="page2" id="page2" style="display:none;">
         <div class="button-group">
@@ -129,6 +238,7 @@
 
     <!-- Work Gallery Content -->
     <div class="work-gallery-content" id="workGalleryContent">
+        <button class="back-button" id="backButton">Back</button>
         <div class="video-wrapper">
             <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
@@ -142,6 +252,11 @@
         let page2 = document.getElementById('page2');
         let workGalleryButton = document.getElementById('workGalleryButton');
         let workGalleryContent = document.getElementById('workGalleryContent');
+        let backButton = document.getElementById('backButton');
+        let settingsIcon = document.getElementById('settingsIcon');
+        let settingsTooltip = document.getElementById('settingsTooltip');
+        let backgroundEffect = document.getElementById('backgroundEffect');
+        let backgroundEnabled = true;
 
         button.addEventListener('click', () => {
             gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
@@ -150,12 +265,28 @@
             } });
         });
 
-        // Show Work Gallery when the button is clicked
         workGalleryButton.addEventListener('click', () => {
             page2.style.display = "none";
             workGalleryContent.style.display = "flex";
-            workGalleryContent.style.flexDirection = "column";
-            workGalleryContent.style.alignItems = "center";
+        });
+
+        backButton.addEventListener('click', () => {
+            workGalleryContent.style.display = "none";
+            page2.style.display = "block";
+        });
+
+        settingsIcon.addEventListener('mouseenter', () => {
+            settingsTooltip.style.opacity = 1;
+        });
+
+        settingsIcon.addEventListener('mouseleave', () => {
+            settingsTooltip.style.opacity = 0;
+        });
+
+        settingsIcon.addEventListener('click', () => {
+            backgroundEnabled = !backgroundEnabled;
+            backgroundEffect.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
+            settingsTooltip.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
     </script>
 
