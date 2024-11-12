@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <style>
+        /* Style for the square */
+        .square {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            margin: 0 auto;
+            transition: border-radius 0.3s ease; /* Smooth transition for corner radius */
+        }
+
+        /* Hover effect to change corner radius */
+        .square:hover {
+            border-radius: 25px; /* Smooth corner radius change on hover */
+        }
+    </style>
 </head>
 <body>
-    <div style="width: 200px; height: 200px; background-color: blue; margin: 0 auto;"></div>
+    <div class="square"></div>
 </body>
 </html>
