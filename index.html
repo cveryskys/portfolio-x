@@ -6,57 +6,74 @@
   <title>Portfolio</title>
   <style>
     body {
-      background-color: #000;
       margin: 0;
-      overflow: hidden;
+      padding: 0;
+      height: 100vh;
+      background-color: #000000;
+      opacity: 1;
+      background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #000000 40px),
+                        repeating-linear-gradient(#76101055, #761010);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    #a {
+    .square {
       width: 200px;
       height: 200px;
-      background-color: #8b0000;
-      margin: 50vh auto 0;
-      position: relative;
+      background-color: #761010;
+      border-radius: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: all 0.5s ease;
     }
 
-    .text {
-      color: black;
-      font-size: 24px;
+    .square:hover {
+      width: 220px;
+      height: 220px;
+      border-radius: 30px;
+    }
+
+    .text-button {
+      font-size: 20px;
       font-family: 'Arial', sans-serif;
-      font-weight: bold;
-      background: linear-gradient(45deg, #ff00ff, #00ffff);
-      -webkit-background-clip: text;
+      color: #ffffff;
+      text-align: center;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
       background-clip: text;
-      transition: opacity 0.5s ease;
+      -webkit-background-clip: text;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    #a.full {
+    .square.active {
       width: 100vw;
       height: 100vh;
       border-radius: 0;
+      background-color: #761010;
     }
+
+    .square .text-button:active {
+      opacity: 0;
+    }
+
   </style>
 </head>
 <body>
-  <div id="a">
-    <div class="text" id="b">Click me</div>
+  <div class="square">
+    <button class="text-button">Click Me</button>
   </div>
 
   <script>
-    const a = document.getElementById('a');
-    const b = document.getElementById('b');
+    const square = document.querySelector('.square');
+    const button = document.querySelector('.text-button');
 
-    a.addEventListener('click', () => {
-      a.classList.add('full');
-      b.style.opacity = '0';
-      setTimeout(() => {
-        b.style.display = 'none';
-      }, 500);
+    square.addEventListener('click', () => {
+      square.classList.add('active');
+      button.style.opacity = '0';
     });
   </script>
 </body>
