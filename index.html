@@ -1,137 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      transition: all 0.5s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Stylized Button</title>
+    <style>
+        body {
+            background-color: #ffcccc; /* Light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    .frame {
-      width: 300px;
-      height: 100px;
-      background-color: #761010;
-      border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      position: relative;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-      transition: all 0.5s ease;
-    }
+        .btn {
+            background-color: #ff6699; /* Pink button color */
+            color: white;
+            font-size: 18px;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease;
+        }
 
-    .frame:hover {
-      transform: scale(1.1);
-    }
+        .btn:hover {
+            transform: scale(1.1) translate(-50%, -50%);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+        }
 
-    .frame:hover .text {
-      transform: rotate(15deg);
-    }
+        .btn:active {
+            transform: scale(1) translate(-50%, -50%);
+        }
 
-    .text {
-      font-size: 22px;
-      font-family: 'Arial', sans-serif;
-      color: white;
-      transition: all 0.3s ease;
-      text-transform: lowercase;
-    }
+        .message-container {
+            display: none;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 24px;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .frame.active {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      background: linear-gradient(to bottom, #8B0000, #3E0000);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+        .message-container p {
+            font-size: 30px;
+            font-weight: bold;
+        }
 
-    .portfolio-frame {
-      width: 80%;
-      height: 80%;
-      background-color: black;
-      border-radius: 15px;
-      border: 3px solid white;
-      position: relative;
-      padding: 20px;
-      overflow: auto;
-      transition: all 0.5s ease;
-    }
+        .glow {
+            text-shadow: 0 0 10px #ff6699, 0 0 20px #ff6699, 0 0 30px #ff6699, 0 0 40px #ff6699;
+        }
 
-    .portfolio-frame h1, .portfolio-frame p {
-      color: white;
-      font-family: 'Arial', sans-serif;
-    }
-
-    .portfolio-frame h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-
-    .portfolio-frame p {
-      font-size: 20px;
-    }
-
-    /* Scroll effect */
-    .scrolling {
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-  </style>
+    </style>
 </head>
 <body>
-  <div class="frame">
-    <div class="text">read me</div>
-  </div>
+    <!-- Button -->
+    <button class="btn" id="clickButton">Read Me</button>
 
-  <script>
-    const frame = document.querySelector('.frame');
-    const text = document.querySelector('.text');
-    const body = document.body;
+    <!-- Hidden Message Container -->
+    <div class="message-container" id="messageContainer">
+        <p>Aydens Portfolio</p>
+        <p>Most used langs: Lua, Python, Java, HTML, and C#</p>
+    </div>
 
-    frame.addEventListener('click', () => {
-      // Animate the red frame to take over the screen
-      frame.classList.add('active');
-      
-      // Debrief/remove the "read me" text after click
-      text.style.opacity = '0';
-      
-      // Create portfolio frame inside the full screen red background
-      setTimeout(() => {
-        const portfolioFrame = document.createElement('div');
-        portfolioFrame.classList.add('portfolio-frame');
-        portfolioFrame.innerHTML = `
-          <h1>ayden's portfolio</h1>
-          <p>most used langs are: lua, python, java, html, and c#</p>
-        `;
-        body.appendChild(portfolioFrame);
+    <script>
+        let button = document.getElementById('clickButton');
+        let messageContainer = document.getElementById('messageContainer');
+        let clicked = false;
 
-        // Enable scrolling effect on the portfolio frame
-        let scrollEffect = true;
-        window.addEventListener('scroll', () => {
-          if (scrollEffect) {
-            portfolioFrame.style.transform = 'scale(1.1)';
-            portfolioFrame.style.opacity = '0.9';
-            portfolioFrame.style.top = `${-window.scrollY}px`;
-          }
+        button.addEventListener('click', () => {
+            if (!clicked) {
+                clicked = true;
+
+                // Tween button to full screen
+                button.style.transition = 'all 1s ease';
+                button.style.transform = 'scale(20)';
+                button.style.opacity = '0';
+                
+                // Show the message container
+                setTimeout(() => {
+                    messageContainer.style.display = 'flex';
+                    messageContainer.style.animation = 'fadeIn 1s';
+                }, 1000);  // Delay to match button animation
+            }
         });
-      }, 500); // Delay to let the frame tween into place before adding portfolio content
-    });
 
-  </script>
+        // CSS animation for fade in
+        setTimeout(() => {
+            document.styleSheets[0].insertRule(`
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+            `, 0);
+        }, 0);
+    </script>
 </body>
 </html>
