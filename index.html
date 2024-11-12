@@ -28,9 +28,11 @@
             left: -50%;
             width: 200%;
             height: 200vh;
-            background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+            background: url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
             opacity: 0.5;
-            z-index: -1; /* Keeps background behind all content */
+            z-index: -1;
+            visibility: visible;
+            transition: visibility 0.3s ease, opacity 0.3s ease;
         }
 
         .btn {
@@ -57,6 +59,7 @@
 
         .btn:hover {
             transform: scale(1.15);
+            background-color: #444444;
         }
 
         .settings-icon {
@@ -176,7 +179,7 @@
 </head>
 <body>
 
-    <div class="bg"></div>
+    <div class="bg" id="bg"></div>
 
     <button class="btn" id="clickButton">Click Me</button>
     <div class="settings-icon" id="settingsIcon"></div>
@@ -195,7 +198,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
         let button = document.getElementById('clickButton');
-        let bg = document.querySelector('.bg');
+        let bg = document.getElementById('bg');
         let settingsIcon = document.getElementById('settingsIcon');
         let tooltipText = document.getElementById('tooltipText');
         let page2 = document.getElementById('page2');
@@ -216,7 +219,7 @@
 
         settingsIcon.addEventListener('click', () => {
             backgroundEnabled = !backgroundEnabled;
-            bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
+            bg.style.opacity = backgroundEnabled ? '0.5' : '0';
             tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
     </script>
