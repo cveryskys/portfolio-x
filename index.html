@@ -32,6 +32,7 @@
             animation: bg-animation .2s infinite;
             opacity: .9;
             visibility: hidden;
+            z-index: -1; /* Set background z-index to -1 */
         }
 
         @keyframes bg-animation {
@@ -46,18 +47,6 @@
             80% { transform: translate(-15%,0) }
             90% { transform: translate(10%,5%) }
             100% { transform: translate(5%,0) }
-        }
-
-        h1 {
-            font-size: 36px;
-            color: #FFFFFF;
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            transform: translateY(100px);
         }
 
         .btn {
@@ -161,7 +150,6 @@
 
     <div class="bg"></div>
 
-    <h1 class="revealUp" id="portfolioText">PORTFOLIO<3</h1>
     <button class="btn" id="clickButton">Click Me</button>
     <div class="settings-icon" id="settingsIcon"></div>
     <div class="tooltip" id="tooltipText">Disable static effect</div>
@@ -180,7 +168,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
         let button = document.getElementById('clickButton');
-        let portfolioText = document.getElementById('portfolioText');
         let bg = document.querySelector('.bg');
         let settingsIcon = document.getElementById('settingsIcon');
         let tooltipText = document.getElementById('tooltipText');
@@ -202,7 +189,6 @@
 
             setTimeout(() => {
                 button.style.display = 'none';
-                portfolioText.style.opacity = 1;
                 bg.style.visibility = 'visible';
                 page2.style.display = 'flex';
                 setTimeout(() => page2.style.opacity = 1, 100); // Fade-in effect
@@ -214,17 +200,6 @@
             bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
             tooltipText.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
-
-        gsap.fromTo("#portfolioText", 
-            { y: 100, autoAlpha: 0, rotate: 5 },
-            {
-                duration: 1.25,
-                y: 0,
-                autoAlpha: 1,
-                rotate: 0,
-                ease: "back",
-            }
-        );
     </script>
 
 </body>
