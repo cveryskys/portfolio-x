@@ -4,68 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio <3</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F7F7F7;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+            background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #6A4C93;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .btn {
+            background-color: #FFC0CB;
+            color: #3D3B49;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px 40px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            transform: rotate(-45deg);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            top: var(--top-offset);
+            left: 0;
+            width: var(--star-tail-length);
+            height: var(--star-tail-height);
+            background: linear-gradient(45deg, #fff, transparent);
+            border-radius: 50%;
+            color: #fff;
+            filter: drop-shadow(0 0 6px #fff);
+            animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translate3d(-30em, 0, 0);
+            }
+        }
+
+        @keyframes tail-fade {
+            0%, 50% {
+                width: var(--star-tail-length);
+                opacity: 1;
+            }
+
+            70%, 80% {
+                width: 0;
+                opacity: 0.4;
+            }
+
+            100% {
+                width: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInStars {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+    </style>
 </head>
 <body>
 
-    <h1>portfolio<3</h1>
+    <h1 id="portfolioText">portfolio<3</h1>
     <button class="btn" id="clickButton">click me</button>
 
-    <!-- Stars container -->
-    <div class="stars" id="starsContainer">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
+    <div class="stars" id="starsContainer"></div>
 
     <script>
         let button = document.getElementById('clickButton');
         let starsContainer = document.getElementById('starsContainer');
+        let portfolioText = document.getElementById('portfolioText');
         let clicked = false;
+
+        // Function to generate random range for star properties
+        function random_range(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1));
+        }
 
         button.addEventListener('click', () => {
             if (!clicked) {
@@ -76,18 +147,23 @@
 
                 setTimeout(() => {
                     button.style.display = 'none';
-                    starsContainer.style.opacity = 1; // Fade in the stars container
-                    starsContainer.style.transition = 'opacity 1s ease-in-out';
-                    starsContainer.classList.add('active'); // Add active class for animation
+                    starsContainer.style.opacity = 1;
+                    starsContainer.style.animation = 'fadeInStars 1s';
 
                     for (let i = 0; i < 50; i++) {
                         let star = document.createElement('div');
                         star.classList.add('star');
-                        star.style.top = `${Math.random() * 100}%`;
-                        star.style.left = `${Math.random() * 100}%`;
+                        // Set random values for the stars
+                        star.style.setProperty('--star-tail-length', `${random_range(500, 750)}em`);
+                        star.style.setProperty('--top-offset', `${random_range(0, 10000)}vh`);
+                        star.style.setProperty('--fall-duration', `${random_range(6000, 12000) / 1000}s`);
+                        star.style.setProperty('--fall-delay', `${random_range(0, 10000) / 1000}s`);
                         starsContainer.appendChild(star);
                     }
-                }, 1000); // Delay after the button transition
+
+                    portfolioText.style.opacity = 1;
+                    portfolioText.style.animation = 'fadeInText 2s';
+                }, 1000);
             }
         });
     </script>
