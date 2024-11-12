@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio <3</title>
+    <title>Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -31,7 +31,7 @@
             background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
             animation: bg-animation .2s infinite;
             opacity: .9;
-            visibility: hidden;
+            visibility: visible;
             z-index: -1;
         }
 
@@ -65,6 +65,33 @@
             transform: scale(1.1);
         }
 
+        .settings-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: #333333;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            z-index: 1;
+        }
+
+        .settings-icon:hover {
+            background-color: #000000;
+        }
+
+        .settings-icon::before {
+            content: '⚙️';
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+        /* Second Page Styles */
         .page2 {
             display: none;
             flex-direction: column;
@@ -74,58 +101,88 @@
             opacity: 0;
         }
 
-        .welcome-text {
-            font-size: 48px;
-            color: #FFFFFF;
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .scroll-frame {
+        .nav-button {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 15px;
+            background-color: #444444;
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #555555;
+            transform: scale(1.05);
+        }
+
+        /* Divider at the bottom */
+        .divider {
             width: 100%;
-            height: 100px;
-            position: fixed;
-            bottom: 0;
-            background: linear-gradient(to right, rgba(17, 17, 17, 0), #111111, rgba(17, 17, 17, 0));
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ffffff, transparent);
+            position: absolute;
+            bottom: 10px;
+        }
+
+        /* Scrolling Frame */
+        .scrolling-frame {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            height: 60vh;
+            padding: 20px;
+            background-color: #222222;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        /* Roblox Button */
+        .roblox-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 0;
-        }
-
-        .profile-button {
-            font-size: 24px;
-            font-weight: bold;
-            padding: 10px 20px;
+            width: 80px;
+            height: 80px;
             background-color: #333333;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 10px;
+            border-radius: 15px;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             cursor: pointer;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            color: #CCCCCC;
+            font-size: 1.5em;
+            text-decoration: none;
         }
 
-        .profile-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            background-color: #777777;
-            box-shadow: 0 4px 8px rgba(192, 192, 192, 0.5);
+        .roblox-button:hover {
+            background-color: #888888;
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
+            color: #ffffff;
         }
 
-        .tooltip-profile {
-            display: none;
+        .tooltip {
             position: absolute;
-            top: -35px;
+            bottom: 90px;
             background-color: #000000;
             color: #FFFFFF;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 14px;
-            white-space: nowrap;
             opacity: 0;
+            pointer-events: none;
             transition: opacity 0.3s ease;
         }
 
-        .profile-button:hover .tooltip-profile {
-            display: block;
+        .roblox-button:hover + .tooltip {
             opacity: 1;
         }
     </style>
@@ -133,45 +190,48 @@
 <body>
 
     <div class="bg"></div>
-
     <button class="btn" id="clickButton">Click Me</button>
+    <div class="settings-icon" id="settingsIcon"></div>
 
     <!-- Second Page Content -->
     <div class="page2" id="page2">
-        <div class="welcome-text">Welcome to my portfolio</div>
-        <div class="scroll-frame">
-            <button class="profile-button" onclick="window.open('https://www.roblox.com/users/24830794/profile', '_blank')">
-                <span class="tooltip-profile">My Roblox Profile</span>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Roblox_Logo_Black.svg" alt="Roblox Logo" width="24" height="24" />
-            </button>
+        <div class="scrolling-frame">
+            <div class="button-group">
+                <button class="nav-button">Work Gallery</button>
+                <button class="nav-button">Marketplace</button>
+                <button class="nav-button">Pricing</button>
+                <button class="nav-button">Info</button>
+            </div>
+            <a href="https://www.roblox.com/users/24830794/profile" target="_blank" class="roblox-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
+                </svg>
+            </a>
+            <div class="tooltip">My Roblox Profile</div>
         </div>
     </div>
+
+    <div class="divider"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
         let button = document.getElementById('clickButton');
         let bg = document.querySelector('.bg');
         let page2 = document.getElementById('page2');
-
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'scale(1.1)';
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'scale(1)';
-        });
+        let settingsIcon = document.getElementById('settingsIcon');
+        let backgroundEnabled = true;
 
         button.addEventListener('click', () => {
-            button.style.transition = 'all 1s ease';
-            button.style.transform = 'scale(100)';
-            button.style.opacity = '0';
-
-            setTimeout(() => {
+            gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
                 button.style.display = 'none';
-                bg.style.visibility = 'visible';
                 page2.style.display = 'flex';
-                setTimeout(() => page2.style.opacity = 1, 100);
-            }, 1000);
+                gsap.to(page2, { opacity: 1, duration: 1, ease: "power3.inOut" });
+            }});
+        });
+
+        settingsIcon.addEventListener('click', () => {
+            backgroundEnabled = !backgroundEnabled;
+            bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
         });
     </script>
 
