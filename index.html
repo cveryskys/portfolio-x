@@ -37,15 +37,6 @@
 
         @keyframes bg-animation {
             0% { transform: translate(0,0) }
-            10% { transform: translate(-5%,-5%) }
-            20% { transform: translate(-10%,5%) }
-            30% { transform: translate(5%,-10%) }
-            40% { transform: translate(-5%,15%) }
-            50% { transform: translate(-10%,5%) }
-            60% { transform: translate(15%,0) }
-            70% { transform: translate(0,10%) }
-            80% { transform: translate(-15%,0) }
-            90% { transform: translate(10%,5%) }
             100% { transform: translate(5%,0) }
         }
 
@@ -55,31 +46,7 @@
             margin-bottom: 20px;
         }
 
-        .kiwi-gif {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .kiwi-tooltip {
-            position: absolute;
-            top: 60px;
-            left: 10px;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn {
+        .btn, .nav-button {
             font-size: 24px;
             font-weight: bold;
             padding: 20px 40px;
@@ -91,48 +58,8 @@
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
-        .btn:hover {
+        .btn:hover, .nav-button:hover {
             transform: scale(1.1);
-        }
-
-        .settings-icon {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 30px;
-            height: 30px;
-            background-color: #333333;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-            z-index: 1;
-        }
-
-        .settings-icon:hover {
-            background-color: #000000;
-        }
-
-        .settings-icon::before {
-            content: '⚙️';
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        .settings-tooltip {
-            position: absolute;
-            bottom: 60px;
-            left: 20px;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
         }
 
         .divider {
@@ -143,61 +70,44 @@
             bottom: 80px;
         }
 
-        .roblox-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: #333333;
-            border-radius: 10px;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            color: #CCCCCC;
-            font-size: 1.5em;
-            text-decoration: none;
-            position: absolute;
-            bottom: 10px;
+        .work-gallery-content {
+            display: none;
+            text-align: center;
+            color: #FFFFFF;
         }
 
-        .roblox-button:hover {
-            background-color: #888888;
+        .video-wrapper iframe {
+            width: 80%;
+            max-width: 640px;
+            height: 360px;
+            border-radius: 10px;
+            border: 2px solid #333333;
+            margin-bottom: 10px;
+        }
+
+        .label-text {
+            font-size: 18px;
+            color: #CCCCCC;
+            margin-bottom: 10px;
+        }
+
+        .game-link-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .game-link-btn:hover {
+            background-color: #555555;
             transform: translateY(-5px);
             box-shadow: 0px 5px 15px rgba(200, 200, 200, 0.3);
-            color: #ffffff;
         }
-
-        .roblox-tooltip {
-            position: absolute;
-            bottom: 60px;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        /* New button style for page 2 */
-        .page2 .nav-button {
-            font-size: 24px;
-            font-weight: bold;
-            padding: 20px 40px;
-            border-radius: 30px;
-            background-color: #333333;
-            color: #FFFFFF;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            margin: 10px;
-        }
-
-        .page2 .nav-button:hover {
-            transform: scale(1.1);
-        }
-
     </style>
 </head>
 <body>
@@ -205,43 +115,33 @@
     <div class="bg"></div>
     <h1 class="title">Welcome to my portfolio! <3</h1>
 
-
-
     <button class="btn" id="clickButton">Click Me</button>
-    <div class="settings-icon" id="settingsIcon"></div>
-    <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
+    <div class="divider"></div>
 
     <div class="page2" id="page2" style="display:none;">
         <div class="button-group">
-            <button class="nav-button">Work Gallery</button>
+            <button class="nav-button" id="workGalleryButton">Work Gallery</button>
             <button class="nav-button">Marketplace</button>
             <button class="nav-button">Pricing</button>
             <button class="nav-button">Info</button>
         </div>
     </div>
 
-    <div class="divider"></div>
-
-    <a href="https://www.roblox.com/users/24830794/profile" target="_blank" class="roblox-button" id="robloxButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
-        </svg>
-    </a>
-    <div class="roblox-tooltip">My Roblox Profile</div>
+    <!-- Work Gallery Content -->
+    <div class="work-gallery-content" id="workGalleryContent">
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Gesiha Morph System</div>
+        <a href="https://www.roblox.com/games/PLACE_ID" target="_blank" class="game-link-btn">Game Link</a>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
         let button = document.getElementById('clickButton');
-        let bg = document.querySelector('.bg');
         let page2 = document.getElementById('page2');
-        let settingsIcon = document.getElementById('settingsIcon');
-        let settingsTooltip = document.getElementById('settingsTooltip');
-        let backgroundEnabled = true;
-
-        let kiwiGif = document.querySelector('.kiwi-gif');
-        let kiwiTooltip = document.querySelector('.kiwi-tooltip');
-        let robloxButton = document.getElementById('robloxButton');
-        let robloxTooltip = document.querySelector('.roblox-tooltip');
+        let workGalleryButton = document.getElementById('workGalleryButton');
+        let workGalleryContent = document.getElementById('workGalleryContent');
 
         button.addEventListener('click', () => {
             gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
@@ -250,34 +150,12 @@
             } });
         });
 
-        settingsIcon.addEventListener('mouseenter', () => {
-            settingsTooltip.style.opacity = 1;
-        });
-
-        settingsIcon.addEventListener('mouseleave', () => {
-            settingsTooltip.style.opacity = 0;
-        });
-
-        settingsIcon.addEventListener('click', () => {
-            backgroundEnabled = !backgroundEnabled;
-            bg.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
-            settingsTooltip.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
-        });
-
-        kiwiGif.addEventListener('mouseenter', () => {
-            kiwiTooltip.style.opacity = 1;
-        });
-
-        kiwiGif.addEventListener('mouseleave', () => {
-            kiwiTooltip.style.opacity = 0;
-        });
-
-        robloxButton.addEventListener('mouseenter', () => {
-            robloxTooltip.style.opacity = 1;
-        });
-
-        robloxButton.addEventListener('mouseleave', () => {
-            robloxTooltip.style.opacity = 0;
+        // Show Work Gallery when the button is clicked
+        workGalleryButton.addEventListener('click', () => {
+            page2.style.display = "none";
+            workGalleryContent.style.display = "flex";
+            workGalleryContent.style.flexDirection = "column";
+            workGalleryContent.style.alignItems = "center";
         });
     </script>
 
