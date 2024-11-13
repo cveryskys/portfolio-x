@@ -152,8 +152,8 @@
         }
 
         .loader {
-            border: 16px solid #f3f3f3;
-            border-top: 16px solid #3498db;
+            border: 16px solid #111111;
+            border-top: 16px solid #8A2BE2;
             border-radius: 50%;
             width: 120px;
             height: 120px;
@@ -401,6 +401,8 @@
         let marketplaceButton = document.getElementById('marketplaceButton');
         let marketplaceContent = document.getElementById('marketplaceContent');
         let backButtonMarketplace = document.getElementById('backButtonMarketplace');
+        let backButtonGallery = document.getElementById('backButtonGallery');
+        let backButtonInfo = document.getElementById('backButtonInfo');
         let settingsIcon = document.getElementById('settingsIcon');
         let settingsTooltip = document.getElementById('settingsTooltip');
         let backgroundEffect = document.getElementById('backgroundEffect');
@@ -430,6 +432,16 @@
 
         backButtonMarketplace.addEventListener('click', () => {
             marketplaceContent.style.display = "none";
+            page2.style.display = "block";
+        });
+
+        backButtonGallery.addEventListener('click', () => {
+            document.getElementById('workGalleryContent').style.display = "none";
+            page2.style.display = "block";
+        });
+
+        backButtonInfo.addEventListener('click', () => {
+            document.getElementById('infoPage').style.display = "none";
             page2.style.display = "block";
         });
 
