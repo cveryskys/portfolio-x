@@ -10,405 +10,159 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            background-color: #111111;
-            overflow-x: hidden;
+            background-color: #111;
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-
         .bg {
             position: fixed;
-            top: -50%;
-            left: -50%;
             width: 200%;
             height: 200vh;
+            top: -50%;
+            left: -50%;
             background: url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
             opacity: 0.9;
-            z-index: -1;
             animation: bg-animation 1.5s steps(10) infinite;
+            z-index: -1;
         }
-
         @keyframes bg-animation {
-            0% { transform: translate(0, 0); }
+            0%, 100% { transform: translate(0, 0); }
             10% { transform: translate(-5%, -5%); }
-            20% { transform: translate(-10%, 5%); }
-            30% { transform: translate(5%, -10%); }
-            40% { transform: translate(-5%, 15%); }
             50% { transform: translate(-10%, 5%); }
-            60% { transform: translate(15%, 0%); }
-            70% { transform: translate(0, 10%); }
-            80% { transform: translate(-15%, 0%); }
             90% { transform: translate(10%, 5%); }
-            100% { transform: translate(5%, 0%); }
         }
-
         .title {
             font-size: 32px;
-            color: #FFFFFF;
+            color: #FFF;
             margin-bottom: 20px;
             text-align: center;
             animation: fadeIn 1s ease;
         }
-
-        .btn {
-            font-size: 24px;
-            font-weight: bold;
-            padding: 20px 40px;
-            border-radius: 30px;
-            background-color: #333333;
-            color: #FFFFFF;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
-        }
-
-        .btn.full-screen-expand {
-            animation: fullScreenExpand 1s ease forwards;
-        }
-
-        @keyframes fullScreenExpand {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(100);
-                opacity: 0;
-            }
-        }
-
-        .page2, .work-gallery-content, .marketplace-content, .info-page {
-            display: none;
-            text-align: center;
-            color: #FFFFFF;
-            padding: 20px;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-        .nav-button:hover {
-            transform: scale(1.1);
+        .btn {
+            font-size: 24px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            background-color: #333;
+            color: #FFF;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
         }
-
-        .settings-icon {
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #444;
+        }
+        .button-group, .content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button-group {
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .back-button {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333;
+            color: #FFF;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+        .settings-icon, .roblox-button {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            width: 30px;
-            height: 30px;
-            background-color: #333333;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .settings-icon:hover {
-            background-color: #000000;
-        }
-
-        .settings-icon::before {
-            content: '⚙️';
-            font-size: 18px;
-            color: #FFFFFF;
-        }
-
-        .settings-tooltip {
-            position: absolute;
-            bottom: 60px;
-            left: 20px;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .roblox-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #FFFFFF;
-            border-radius: 10px;
-            color: #111111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: transform 0.3s, background-color 0.3s;
         }
-
+        .settings-icon { left: 20px; background-color: #333; }
+        .settings-icon:hover { background-color: #000; }
+        .roblox-button {
+            right: 20px;
+            background-color: #FFF;
+            color: #111;
+        }
         .roblox-button:hover {
-            background-color: #CCCCCC;
+            background-color: #CCC;
             transform: translateY(-5px);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            color: #ffffff;
         }
-
-    .video-wrapper {
-        width: 80%;
-        max-width: 800px;
-        height: 450px;
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .video-wrapper iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 10px;
-    }
-
-    .label-text {
-        font-size: 18px;
-        color: #CCCCCC;
-        margin-bottom: 10px;
-    }
-
-    .game-link-btn {
-        color: #00A1FF;
-        text-decoration: none;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .nav-button {
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #333;
-        color: #FFF;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .nav-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        background-color: #555;
-    }
-
-    .nav-left {
-        left: -60px;
-    }
-
-    .nav-right {
-        right: -60px;
-    }
-
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 18px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background-color: #333333;
-            color: #FFFFFF;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #555555;
-            transform: scale(1.05);
-        }
-
     </style>
 </head>
 <body>
-
-    <div class="bg" id="backgroundEffect"></div>
+    <div class="bg"></div>
     <h1 class="title">Welcome to my portfolio! <3</h1>
-
     <button class="btn" id="clickButton">Click Me</button>
-    <div class="divider"></div>
 
-    <div class="settings-icon" id="settingsIcon"></div>
-    <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
-
-    <div class="roblox-button" id="robloxButton">
-        <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
-            </svg>
-        </a>
+    <div class="button-group" id="page2">
+        <button class="btn" id="infoButton">Info</button>
+        <button class="btn" id="workGalleryButton">Work Gallery</button>
+        <button class="btn" id="marketplaceButton">Marketplace</button>
     </div>
-    
-<div class="page2" id="page2">
-    <div class="button-group">
-        <button class="nav-button" id="infoButton">Info</button>
-        <button class="nav-button" id="workGalleryButton">Work Gallery</button>
-        <button class="nav-button">Pricing</button>
-        <button class="nav-button" id="marketplaceButton">Marketplace</button>
-    </div>
-</div>
 
-    <div class="marketplace-content" id="marketplaceContent">
-        <button class="back-button" id="backButtonMarketplace">Back</button>
-        <div class="loader">
-            <div class="loader-tooltip">ur js gonna have to wait lol</div>
+    <div class="content" id="workGalleryContent">
+        <button class="back-button" data-back="page2">Back</button>
+        <div>
+            <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
     </div>
 
-
-<div class="work-gallery-content" id="workGalleryContent">
-    <button class="back-button" id="backButtonGallery">Back</button>
-
-    <div class="video-wrapper">
-        <!-- Navigation buttons -->
-        <div class="nav-button nav-left" onclick="prevVideo()">&#10094;</div>
-        <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
-        <div class="nav-button nav-right" onclick="nextVideo()">&#10095;</div>
-    </div>
-</div>
-    <div class="info-page" id="infoPage">
-        <button class="back-button" id="backButtonInfo">Back</button>
-        <p class="title-text">
-            <span>Top Programming Languages</span>
-        </p>
-        <p>
-            <a href="https://github.com/cveryskys/github-readme-stats" target="_blank">
-                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cveryskys&layout=compact&theme=gray&langs_count=6&title_color=000000&text_color=808080&bg_color=ffffff&border_color=cccccc&icon_color=000000&custom_title=top%20langs" 
-                     alt="Top Langs">
-            </a>
-        </p>
+    <div class="content" id="infoPage">
+        <button class="back-button" data-back="page2">Back</button>
         <p class="description">
-            Hii! I'm Ayden, I'm <span class="bold">19</span>, currently taking <span class="bold">university classes online</span>, and I've been programming for over 
-            <span class="bold">6 years</span> on Roblox, and <span class="bold">4 years</span> using Python to create many things! I am constantly looking for work, 
-            and I'm always available to do anything you need. DM me <span class="bold">@screaming.silently</span> on Discord to see if my commissions are open and if I'm up to take your task!
-            <br><br>
-            <span class="bold">Please note:</span> Do not DM me if you can’t meet my pricing criteria, if you're not above the age of <span class="bold">13</span>, or if all you’re going to say is "<span class="bold">Hello</span>". Refer to: 
-            <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a>.
+            I'm Ayden, 19 years old, programming for over 6 years on Roblox.
         </p>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <div class="settings-icon" id="settingsIcon">⚙️</div>
+    <a class="roblox-button" href="https://www.roblox.com/users/24830794/profile" target="_blank">🔗</a>
+
     <script>
-        const videos = [
-            {
-                src: "https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview",
-                title: "Gesiha Morph System",
-                link: "https://www.roblox.com/games/124145520481844/Geishas"
-            },
-            {
-                src: "https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview",
-                title: "Door System",
-                link: "https://www.roblox.com/games/90856562619374/doors"
-            }
-        ];
-
-        let currentVideoIndex = 0;
-
-        function updateVideo() {
-            const video = videos[currentVideoIndex];
-            document.getElementById('videoFrame').src = video.src;
-            document.getElementById('videoTitle').innerText = video.title;
-            const gameLink = document.getElementById('gameLink');
-            gameLink.style.display = video.link ? 'inline' : 'none';
-            gameLink.href = video.link;
-        }
-
-        function nextVideo() {
-            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            updateVideo();
-        }
-
-        function prevVideo() {
-            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-            updateVideo();
-        }
-
-        updateVideo();
+        const toggleDisplay = (showId) => {
+            document.querySelectorAll('.button-group, .content').forEach(el => el.style.display = 'none');
+            document.getElementById(showId).style.display = 'flex';
+        };
 
         document.getElementById('clickButton').addEventListener('click', () => {
-            gsap.to(document.getElementById('clickButton'), { scale: 100, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
+            toggleDisplay('page2');
+            gsap.to('#clickButton', { scale: 100, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
                 document.getElementById('clickButton').style.display = "none";
-                document.getElementById('page2').style.display = "block";
             } });
         });
 
-        document.getElementById('workGalleryButton').addEventListener('click', () => {
-            document.getElementById('page2').style.display = "none";
-            document.getElementById('workGalleryContent').style.display = "flex";
+        document.getElementById('infoButton').addEventListener('click', () => toggleDisplay('infoPage'));
+        document.getElementById('workGalleryButton').addEventListener('click', () => toggleDisplay('workGalleryContent'));
+        document.getElementById('marketplaceButton').addEventListener('click', () => alert('Marketplace content not available'));
+
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', () => toggleDisplay(button.getAttribute('data-back')));
         });
 
-        document.getElementById('infoButton').addEventListener('click', () => {
-            document.getElementById('page2').style.display = "none";
-            document.getElementById('infoPage').style.display = "block";
-        });
-
-        document.getElementById('marketplaceButton').addEventListener('click', () => {
-            document.getElementById('page2').style.display = "none";
-            document.getElementById('marketplaceContent').style.display = "flex";
-        });
-
-        document.getElementById('backButtonMarketplace').addEventListener('click', () => {
-            document.getElementById('marketplaceContent').style.display = "none";
-            document.getElementById('page2').style.display = "block";
-        });
-
-        document.getElementById('backButtonGallery').addEventListener('click', () => {
-            document.getElementById('workGalleryContent').style.display = "none";
-            document.getElementById('page2').style.display = "block";
-        });
-
-        document.getElementById('backButtonInfo').addEventListener('click', () => {
-            document.getElementById('infoPage').style.display = "none";
-            document.getElementById('page2').style.display = "block";
-        });
-
-        const settingsIcon = document.getElementById('settingsIcon');
-        const settingsTooltip = document.getElementById('settingsTooltip');
-        const backgroundEffect = document.getElementById('backgroundEffect');
         let backgroundEnabled = true;
-
-        settingsIcon.addEventListener('mouseenter', () => {
-            settingsTooltip.style.opacity = 1;
-        });
-
-        settingsIcon.addEventListener('mouseleave', () => {
-            settingsTooltip.style.opacity = 0;
-        });
-
-        settingsIcon.addEventListener('click', () => {
+        document.getElementById('settingsIcon').addEventListener('click', () => {
             backgroundEnabled = !backgroundEnabled;
-            backgroundEffect.style.visibility = backgroundEnabled ? 'visible' : 'hidden';
-            settingsTooltip.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
+            document.querySelector('.bg').style.visibility = backgroundEnabled ? 'visible' : 'hidden';
         });
     </script>
 </body>
