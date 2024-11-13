@@ -165,7 +165,8 @@
             100% { transform: rotate(360deg); }
         }
 
-        .marketplace-content {
+        .marketplace-content,
+        .pricing-content {
             display: none;
             align-items: center;
             justify-content: center;
@@ -194,7 +195,8 @@
             display: block;
         }
 
-        .work-gallery-content {
+        .work-gallery-content,
+        .pricing-videos-content {
             display: none;
             flex-direction: column;
             align-items: center;
@@ -248,60 +250,6 @@
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .info-page {
-            display: none;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px;
-            animation: fadeIn 0.5s ease;
-            width: 80%;
-            max-width: 800px;
-        }
-
-        .info-page .title-text {
-            font-size: 36px;
-            font-weight: bold;
-            text-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .info-page .title-text span {
-            color: #8A2BE2;
-            text-transform: uppercase;
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .info-page img {
-            border: 6px solid #8A2BE2;
-            border-radius: 20px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            transform: scale(1);
-            margin: 20px 0;
-        }
-
-        .info-page img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .description {
-            font-size: 20px;
-            color: #BBBBBB;
-            line-height: 1.6;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .description:hover {
-            transform: scale(1.02);
-        }
-
-        .description .bold {
-            font-weight: bold;
-        }
-
         .back-button {
             position: absolute;
             top: 20px;
@@ -345,7 +293,7 @@
             <button class="nav-button" id="workGalleryButton">Work Gallery</button>
             <button class="nav-button" id="infoButton">Info</button>
             <button class="nav-button" id="marketplaceButton">Marketplace</button>
-            <button class="nav-button">Pricing</button>
+            <button class="nav-button" id="pricingButton">Pricing</button>
         </div>
     </div>
 
@@ -356,40 +304,69 @@
         </div>
     </div>
 
-    <div class="work-gallery-content" id="workGalleryContent">
-        <button class="back-button" id="backButtonGallery">Back</button>
-        <div class="video-wrapper">
-            <iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
+    <div class="pricing-content" id="pricingContent">
+        <button class="back-button" id="backButtonPricing">Back</button>
+        <div class="loader">
+            <div class="loader-tooltip">waits for me to do pricing</div>
         </div>
-        <div class="label-text">Gesiha Morph System</div>
-        <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" class="game-link-btn">Game Link</a>
-        <div class="divider"></div>
-        <div class="video-wrapper">
-            <iframe src="https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview" allow="autoplay" allowfullscreen></iframe>
-        </div>
-        <div class="label-text">Door System</div>
-        <a href="https://www.roblox.com/games/90856562619374/doors" target="_blank" class="game-link-btn">Game Link</a>
     </div>
 
-    <div class="info-page" id="infoPage">
-        <button class="back-button" id="backButtonInfo">Back</button>
-        <p class="title-text">
-            <span>Top Programming Languages</span>
-        </p>
-        <p>
-            <a href="https://github.com/cveryskys/github-readme-stats" target="_blank">
-                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cveryskys&layout=compact&theme=gray&langs_count=6&title_color=000000&text_color=808080&bg_color=ffffff&border_color=cccccc&icon_color=000000&custom_title=top%20langs" 
-                     alt="Top Langs">
-            </a>
-        </p>
-        <p class="description">
-            Hii! I'm Ayden, I'm <span class="bold">19</span>, currently taking <span class="bold">university classes online</span>, and I've been programming for over 
-            <span class="bold">6 years</span> on Roblox, and <span class="bold">4 years</span> using Python to create many things! I am constantly looking for work, 
-            and I'm always available to do anything you need. DM me <span class="bold">@screaming.silently</span> on Discord to see if my commissions are open and if I'm up to take your task!
-            <br><br>
-            <span class="bold">Please note:</span> Do not DM me if you can’t meet my pricing criteria, if you're not above the age of <span class="bold">13</span>, or if all you’re going to say is "<span class="bold">Hello</span>". Refer to: 
-            <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a>.
-        </p>
+    <div class="pricing-videos-content" id="pricingVideosContent">
+        <button class="back-button" id="backButtonPricingVideos">Back</button>
+
+        <!-- Spell Game -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1eHLOTUsEY_tHuiGjbWYYWsmY-fVVCU1x/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1LKEYjq3xVFF_qIJKPDpW1ddgBMAq8ZEi/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Spell Game (no game link)</div>
+        <div class="divider"></div>
+
+        <!-- Parkour Game -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1BPKVBoEUFDOwSQeZ712UCVP5t2bybQZQ/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1-8ARhTl18j7L9b46EW2rnuHlswvT9uMa/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Parkour Game</div>
+        <a href="https://www.roblox.com/games/17515509343/TESTING-FOR-NEW-GAME" target="_blank" class="game-link-btn">Game Link</a>
+        <div class="divider"></div>
+
+        <!-- DTI System Remake -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">DTI System Remake</div>
+        <a href="https://www.roblox.com/games/83267667610214/DTI" target="_blank" class="game-link-btn">Game Link</a>
+        <div class="divider"></div>
+
+        <!-- Lumiere Runway Work -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Lumiere Runway Work</div>
+        <a href="https://www.roblox.com/groups/8203456/Lumi-re-Runway#!/about" target="_blank" class="game-link-btn">Group Link</a>
+        <div class="divider"></div>
+
+        <!-- Placable System + Sign System -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1ieTiKxlz0ztlAb6rkA8rTd8WEiWeRE2Q/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/15FclcfTxSC7kXeSu0Ixam0QeEVZrw86F/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Placable System + Sign System</div>
+        <a href="https://www.roblox.com/games/120307706136956/Placables-System-V-1" target="_blank" class="game-link-btn">Game Link</a>
+        <div class="divider"></div>
+
+        <!-- Fan Hit System -->
+        <div class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1fOKsM0m5Oq9UsrK24_IE4TFOPalk65n8/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <div class="label-text">Fan Hit System (no game link)</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
@@ -399,10 +376,13 @@
         let workGalleryButton = document.getElementById('workGalleryButton');
         let infoButton = document.getElementById('infoButton');
         let marketplaceButton = document.getElementById('marketplaceButton');
+        let pricingButton = document.getElementById('pricingButton');
         let marketplaceContent = document.getElementById('marketplaceContent');
+        let pricingContent = document.getElementById('pricingContent');
+        let pricingVideosContent = document.getElementById('pricingVideosContent');
         let backButtonMarketplace = document.getElementById('backButtonMarketplace');
-        let backButtonGallery = document.getElementById('backButtonGallery');
-        let backButtonInfo = document.getElementById('backButtonInfo');
+        let backButtonPricing = document.getElementById('backButtonPricing');
+        let backButtonPricingVideos = document.getElementById('backButtonPricingVideos');
         let settingsIcon = document.getElementById('settingsIcon');
         let settingsTooltip = document.getElementById('settingsTooltip');
         let backgroundEffect = document.getElementById('backgroundEffect');
@@ -430,18 +410,28 @@
             marketplaceContent.style.display = "flex";
         });
 
+        pricingButton.addEventListener('click', () => {
+            page2.style.display = "none";
+            pricingContent.style.display = "flex";
+        });
+
         backButtonMarketplace.addEventListener('click', () => {
             marketplaceContent.style.display = "none";
             page2.style.display = "block";
         });
 
-        backButtonGallery.addEventListener('click', () => {
-            document.getElementById('workGalleryContent').style.display = "none";
+        backButtonPricing.addEventListener('click', () => {
+            pricingContent.style.display = "none";
             page2.style.display = "block";
         });
 
-        backButtonInfo.addEventListener('click', () => {
-            document.getElementById('infoPage').style.display = "none";
+        pricingContent.addEventListener('click', () => {
+            pricingContent.style.display = "none";
+            pricingVideosContent.style.display = "flex";
+        });
+
+        backButtonPricingVideos.addEventListener('click', () => {
+            pricingVideosContent.style.display = "none";
             page2.style.display = "block";
         });
 
