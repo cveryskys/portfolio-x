@@ -184,11 +184,13 @@
         }
 
         .video-wrapper {
-            width: 80%;
+            width: 300%;
             max-width: 800px;
-            height: 450px;
+            height: 300;
             position: relative;
             margin-bottom: 20px;
+            border-radius: 10xpx;
+            overflow: hidden;
         }
 
         .video-wrapper iframe {
@@ -198,18 +200,31 @@
             border-radius: 10px;
         }
 
-        .label-text {
-            font-size: 18px;
-            color: #CCCCCC;
-            margin-bottom: 10px;
-        }
+.video-wrapper {
+    width: 300px; /* Makes it square */
+    height: 300px; /* Square aspect */
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        .game-link-btn {
-            color: #00A1FF;
-            text-decoration: none;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+.label-text, .game-link-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333333;
+    color: #FFFFFF;
+    border-radius: 5px;
+    margin: 5px 0;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.label-text:hover, .game-link-btn:hover {
+    background-color: #555555;
+}
 
         .nav-button {
             position: absolute;
@@ -279,15 +294,15 @@
             </svg>
         </a>
     </div>
-
-    <div class="page2" id="page2">
-        <div class="button-group">
-            <button class="nav-button" id="workGalleryButton">Work Gallery</button>
-            <button class="nav-button" id="infoButton">Info</button>
-            <button class="nav-button" id="marketplaceButton">Marketplace</button>
-            <button class="nav-button">Pricing</button>
-        </div>
+    
+<div class="page2" id="page2">
+    <div class="button-group">
+        <button class="nav-button" id="infoButton">Info</button>
+        <button class="nav-button" id="workGalleryButton">Work Gallery</button>
+        <button class="nav-button">Pricing</button>
+        <button class="nav-button" id="marketplaceButton">Marketplace</button>
     </div>
+</div>
 
     <div class="marketplace-content" id="marketplaceContent">
         <button class="back-button" id="backButtonMarketplace">Back</button>
