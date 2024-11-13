@@ -39,14 +39,14 @@
             0% { transform: translate(0,0); }
             10% { transform: translate(-5%,-5%); }
             20% { transform: translate(-10%,5%); }
-            30% { transform: 5%,-10%; }
-            40% { transform: -5%,15%; }
-            50% { transform: -10%,5%; }
-            60% { transform: 15%,0%; }
-            70% { transform: 0,10%; }
-            80% { transform: -15%,0%; }
-            90% { transform: 10%,5%; }
-            100% { transform: 5%,0%; }
+            30% { transform: translate(5%,-10%); }
+            40% { transform: translate(-5%,15%); }
+            50% { transform: translate(-10%,5%); }
+            60% { transform: translate(15%,0%); }
+            70% { transform: translate(0,10%); }
+            80% { transform: translate(-15%,0%); }
+            90% { transform: translate(10%,5%); }
+            100% { transform: translate(5%,0%); }
         }
 
         .title {
@@ -73,13 +73,8 @@
             transform: scale(1.1);
         }
 
-        .settings-icon, .roblox-button {
-            position: fixed;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
         .settings-icon {
+            position: fixed;
             bottom: 20px;
             left: 20px;
             width: 30px;
@@ -89,6 +84,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
             z-index: 1;
         }
 
@@ -117,6 +113,7 @@
         }
 
         .roblox-button {
+            position: fixed;
             bottom: 20px;
             right: 20px;
             width: 50px;
@@ -124,8 +121,6 @@
             background-color: #FFFFFF;
             border-radius: 10px;
             color: #111111;
-            font-size: 1.5em;
-            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,22 +142,104 @@
             opacity: 0.8;
         }
 
+        .page2 {
+            display: none;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px;
+        }
+
         .page2 .nav-button {
             margin: 10px;
         }
 
-        .loader {
-            border: 16px solid #111111;
-            border-top: 16px solid #8A2BE2;
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
+        .work-gallery-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            width: 100%;
+            max-height: 100vh;
+            overflow-y: hidden;
+            padding: 20px;
+            background-color: #121212;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .video-wrapper {
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .label-text {
+            font-size: 18px;
+            color: #CCCCCC;
+            margin-bottom: 10px;
+        }
+
+        .game-link-btn {
+            color: #00A1FF;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #333;
+            color: #FFF;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: #555;
+        }
+
+        .nav-left {
+            left: -60px;
+        }
+
+        .nav-right {
+            right: -60px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #555555;
+            transform: scale(1.05);
         }
 
         .marketplace-content {
@@ -175,102 +252,11 @@
             flex-direction: column;
         }
 
-        .loader-tooltip {
-            display: none;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
-            white-space: nowrap;
-        }
-
-        .loader:hover .loader-tooltip {
-            display: block;
-        }
-
-    .work-gallery-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        color: #FFFFFF;
-        width: 100%;
-        max-height: 100vh;
-        overflow-y: hidden;
-        padding: 20px;
-        background-color: #121212;
-    }
-
-    .video-wrapper {
-        width: 80%;
-        max-width: 800px;
-        height: 450px;
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .video-wrapper iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 10px;
-    }
-
-    .label-text {
-        font-size: 18px;
-        color: #CCCCCC;
-        margin-bottom: 10px;
-    }
-
-    .game-link-btn {
-        color: #00A1FF;
-        text-decoration: none;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .nav-button {
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #333;
-        color: #FFF;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .nav-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        background-color: #555;
-    }
-
-    .nav-left {
-        left: -60px;
-    }
-
-    .nav-right {
-        right: -60px;
-    }
-
         .info-page {
             display: none;
             color: #FFFFFF;
             text-align: center;
             padding: 20px;
-            animation: fadeIn 0.5s ease;
             width: 80%;
             max-width: 800px;
         }
@@ -279,14 +265,6 @@
             font-size: 36px;
             font-weight: bold;
             text-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .info-page .title-text span {
-            color: #8A2BE2;
-            text-transform: uppercase;
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 2px;
         }
 
         .info-page img {
@@ -311,30 +289,8 @@
             transition: transform 0.3s ease;
         }
 
-        .description:hover {
-            transform: scale(1.02);
-        }
-
         .description .bold {
             font-weight: bold;
-        }
-
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 18px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background-color: #333333;
-            color: #FFFFFF;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #555555;
-            transform: scale(1.05);
         }
     </style>
 </head>
@@ -350,7 +306,7 @@
     <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
 
     <div class="roblox-button" id="robloxButton">
-        <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
+            <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
             </svg>
@@ -373,66 +329,19 @@
         </div>
     </div>
 
+    <div class="work-gallery-content" id="workGalleryContent">
+        <button class="back-button" id="backButtonGallery">Back</button>
 
-<div class="work-gallery-content" id="workGalleryContent">
-    <button class="back-button" id="backButtonGallery">Back</button>
+        <div class="video-wrapper">
+            <div class="nav-button nav-left" onclick="prevVideo()">&#10094;</div>
+            <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
+            <div class="nav-button nav-right" onclick="nextVideo()">&#10095;</div>
+        </div>
 
-    <div class="video-wrapper">
-        <!-- Navigation buttons -->
-        <div class="nav-button nav-left" onclick="prevVideo()">&#10094;</div>
-        <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
-        <div class="nav-button nav-right" onclick="nextVideo()">&#10095;</div>
+        <div class="label-text" id="videoTitle">Gesiha Morph System</div>
+        <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" id="gameLink" class="game-link-btn">Game Link</a>
     </div>
 
-    <div class="label-text" id="videoTitle">Gesiha Morph System</div>
-    <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" id="gameLink" class="game-link-btn">Game Link</a>
-</div>
-
-<script>
-    const videos = [
-        {
-            src: "https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview",
-            title: "Gesiha Morph System",
-            link: "https://www.roblox.com/games/124145520481844/Geishas"
-        },
-        {
-            src: "https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview",
-            title: "Door System",
-            link: "https://www.roblox.com/games/90856562619374/doors"
-        },
-        {
-            src: "https://drive.google.com/file/d/1eHLOTUsEY_tHuiGjbWYYWsmY-fVVCU1x/preview",
-            title: "Spell Game",
-            link: ""  // No game link
-        },
-        {
-            src: "https://drive.google.com/file/d/1BPKVBoEUFDOwSQeZ712UCVP5t2bybQZQ/preview",
-            title: "Parkour Game",
-            link: "https://www.roblox.com/games/17515509343/TESTING-FOR-NEW-GAME"
-        },
-        {
-            src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
-            title: "DTI System Remake",
-            link: "https://www.roblox.com/games/83267667610214/DTI"
-        },
-        {
-            src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
-            title: "Lumiere Runway Work",
-            link: "https://www.roblox.com/groups/8203456/Lumi-re-Runway#!/about"
-        },
-        {
-            src: "https://drive.google.com/file/d/1ieTiKxlz0ztlAb6rkA8rTd8WEiWeRE2Q/preview",
-            title: "Placable System + Sign System",
-            link: "https://www.roblox.com/games/120307706136956/Placables-System-V-1"
-        },
-        {
-            src: "https://drive.google.com/file/d/1fOKsM0m5Oq9UsrK24_IE4TFOPalk65n8/preview",
-            title: "Fan Hit System",
-            link: ""  // No game link
-        }
-    ];
-
-    
     <div class="info-page" id="infoPage">
         <button class="back-button" id="backButtonInfo">Back</button>
         <p class="title-text">
@@ -456,82 +365,118 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script>
-        let button = document.getElementById('clickButton');
-        let page2 = document.getElementById('page2');
-        let workGalleryButton = document.getElementById('workGalleryButton');
-        let infoButton = document.getElementById('infoButton');
-        let marketplaceButton = document.getElementById('marketplaceButton');
-        let marketplaceContent = document.getElementById('marketplaceContent');
-        let backButtonMarketplace = document.getElementById('backButtonMarketplace');
-        let backButtonGallery = document.getElementById('backButtonGallery');
-        let backButtonInfo = document.getElementById('backButtonInfo');
-        let settingsIcon = document.getElementById('settingsIcon');
-        let settingsTooltip = document.getElementById('settingsTooltip');
-        let backgroundEffect = document.getElementById('backgroundEffect');
-        let backgroundEnabled = true;
-let currentVideoIndex = 0;
+        const videos = [
+            {
+                src: "https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview",
+                title: "Gesiha Morph System",
+                link: "https://www.roblox.com/games/124145520481844/Geishas"
+            },
+            {
+                src: "https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview",
+                title: "Door System",
+                link: "https://www.roblox.com/games/90856562619374/doors"
+            },
+            {
+                src: "https://drive.google.com/file/d/1eHLOTUsEY_tHuiGjbWYYWsmY-fVVCU1x/preview",
+                title: "Spell Game",
+                link: ""  // No game link
+            },
+            {
+                src: "https://drive.google.com/file/d/1BPKVBoEUFDOwSQeZ712UCVP5t2bybQZQ/preview",
+                title: "Parkour Game",
+                link: "https://www.roblox.com/games/17515509343/TESTING-FOR-NEW-GAME"
+            },
+            {
+                src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
+                title: "DTI System Remake",
+                link: "https://www.roblox.com/games/83267667610214/DTI"
+            },
+            {
+                src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
+                title: "Lumiere Runway Work",
+                link: "https://www.roblox.com/groups/8203456/Lumi-re-Runway#!/about"
+            },
+            {
+                src: "https://drive.google.com/file/d/1ieTiKxlz0ztlAb6rkA8rTd8WEiWeRE2Q/preview",
+                title: "Placable System + Sign System",
+                link: "https://www.roblox.com/games/120307706136956/Placables-System-V-1"
+            },
+            {
+                src: "https://drive.google.com/file/d/1fOKsM0m5Oq9UsrK24_IE4TFOPalk65n8/preview",
+                title: "Fan Hit System",
+                link: ""  // No game link
+            }
+        ];
 
-    function updateVideo() {
-        const video = videos[currentVideoIndex];
-        document.getElementById('videoFrame').src = video.src;
-        document.getElementById('videoTitle').innerText = video.title;
-        const gameLink = document.getElementById('gameLink');
-        if (video.link) {
-            gameLink.href = video.link;
-            gameLink.style.display = 'inline';
-        } else {
-            gameLink.style.display = 'none';  // Hide link if none exists
+        let currentVideoIndex = 0;
+
+        function updateVideo() {
+            const video = videos[currentVideoIndex];
+            document.getElementById('videoFrame').src = video.src;
+            document.getElementById('videoTitle').innerText = video.title;
+            const gameLink = document.getElementById('gameLink');
+            if (video.link) {
+                gameLink.href = video.link;
+                gameLink.style.display = 'inline';
+            } else {
+                gameLink.style.display = 'none';  // Hide link if none exists
+            }
         }
-    }
 
-    function nextVideo() {
-        currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        function nextVideo() {
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+            updateVideo();
+        }
+
+        function prevVideo() {
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+            updateVideo();
+        }
+
+        // Initialize the first video
         updateVideo();
-    }
 
-    function prevVideo() {
-        currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-        updateVideo();
-    }
-
-    // Initialize the first video
-    updateVideo();
-        button.addEventListener('click', () => {
-            gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
-                button.style.display = "none";
-                page2.style.display = "block";
+        document.getElementById('clickButton').addEventListener('click', () => {
+            gsap.to(document.getElementById('clickButton'), { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
+                document.getElementById('clickButton').style.display = "none";
+                document.getElementById('page2').style.display = "block";
             } });
         });
 
-        workGalleryButton.addEventListener('click', () => {
-            page2.style.display = "none";
+        document.getElementById('workGalleryButton').addEventListener('click', () => {
+            document.getElementById('page2').style.display = "none";
             document.getElementById('workGalleryContent').style.display = "flex";
         });
 
-        infoButton.addEventListener('click', () => {
-            page2.style.display = "none";
+        document.getElementById('infoButton').addEventListener('click', () => {
+            document.getElementById('page2').style.display = "none";
             document.getElementById('infoPage').style.display = "block";
         });
 
-        marketplaceButton.addEventListener('click', () => {
-            page2.style.display = "none";
-            marketplaceContent.style.display = "flex";
+        document.getElementById('marketplaceButton').addEventListener('click', () => {
+            document.getElementById('page2').style.display = "none";
+            document.getElementById('marketplaceContent').style.display = "flex";
         });
 
-        backButtonMarketplace.addEventListener('click', () => {
-            marketplaceContent.style.display = "none";
-            page2.style.display = "block";
+        document.getElementById('backButtonMarketplace').addEventListener('click', () => {
+            document.getElementById('marketplaceContent').style.display = "none";
+            document.getElementById('page2').style.display = "block";
         });
 
-        backButtonGallery.addEventListener('click', () => {
+        document.getElementById('backButtonGallery').addEventListener('click', () => {
             document.getElementById('workGalleryContent').style.display = "none";
-            page2.style.display = "block";
+            document.getElementById('page2').style.display = "block";
         });
 
-        backButtonInfo.addEventListener('click', () => {
+        document.getElementById('backButtonInfo').addEventListener('click', () => {
             document.getElementById('infoPage').style.display = "none";
-            page2.style.display = "block";
+            document.getElementById('page2').style.display = "block";
         });
+
+        const settingsIcon = document.getElementById('settingsIcon');
+        const settingsTooltip = document.getElementById('settingsTooltip');
+        const backgroundEffect = document.getElementById('backgroundEffect');
+        let backgroundEnabled = true;
 
         settingsIcon.addEventListener('mouseenter', () => {
             settingsTooltip.style.opacity = 1;
@@ -547,6 +492,5 @@ let currentVideoIndex = 0;
             settingsTooltip.textContent = backgroundEnabled ? 'Disable static effect' : 'Enable static effect';
         });
     </script>
-
 </body>
 </html>
