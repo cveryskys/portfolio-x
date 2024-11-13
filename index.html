@@ -194,59 +194,76 @@
             display: block;
         }
 
-        .work-gallery-content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: #FFFFFF;
-            width: 100%;
-            max-height: 100vh;
-            overflow-y: auto;
-            padding: 20px;
-        }
+    .work-gallery-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+        width: 100%;
+        max-height: 100vh;
+        overflow-y: hidden;
+        padding: 20px;
+        background-color: #121212;
+    }
 
-        .video-wrapper {
-            width: 80%;
-            max-width: 800px;
-            height: 450px;
-            padding: 10px;
-            border: 2px solid #333333;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+    .video-wrapper {
+        width: 80%;
+        max-width: 800px;
+        height: 450px;
+        position: relative;
+        margin-bottom: 20px;
+    }
 
-        .video-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-        }
+    .video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+    }
 
-        .label-text {
-            font-size: 18px;
-            color: #CCCCCC;
-            margin-bottom: 10px;
-        }
+    .label-text {
+        font-size: 18px;
+        color: #CCCCCC;
+        margin-bottom: 10px;
+    }
 
-        .game-link-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333333;
-            color: #FFFFFF;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-        }
+    .game-link-btn {
+        color: #00A1FF;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
 
-        .game-link-btn:hover {
-            background-color: #555555;
-            transform: translateY(-5px);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        }
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #333;
+        color: #FFF;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .nav-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background-color: #555;
+    }
+
+    .nav-left {
+        left: -60px;
+    }
+
+    .nav-right {
+        right: -60px;
+    }
 
         .info-page {
             display: none;
@@ -356,18 +373,65 @@
         </div>
     </div>
 
+
 <div class="work-gallery-content" id="workGalleryContent">
     <button class="back-button" id="backButtonGallery">Back</button>
 
-       <!-- Gesiha Morph System -->
     <div class="video-wrapper">
-<iframe src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" width="640" height="480" allow="autoplay"></iframe>
+        <!-- Navigation buttons -->
+        <div class="nav-button nav-left" onclick="prevVideo()">&#10094;</div>
+        <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
+        <div class="nav-button nav-right" onclick="nextVideo()">&#10095;</div>
     </div>
-    <div class="label-text">Gesiha Morph System</div>
-    <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" class="game-link-btn">Game Link</a>
 
-    <div class="divider"></div>    
+    <div class="label-text" id="videoTitle">Gesiha Morph System</div>
+    <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" id="gameLink" class="game-link-btn">Game Link</a>
 </div>
+
+<script>
+    const videos = [
+        {
+            src: "https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview",
+            title: "Gesiha Morph System",
+            link: "https://www.roblox.com/games/124145520481844/Geishas"
+        },
+        {
+            src: "https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview",
+            title: "Door System",
+            link: "https://www.roblox.com/games/90856562619374/doors"
+        },
+        {
+            src: "https://drive.google.com/file/d/1eHLOTUsEY_tHuiGjbWYYWsmY-fVVCU1x/preview",
+            title: "Spell Game",
+            link: ""  // No game link
+        },
+        {
+            src: "https://drive.google.com/file/d/1BPKVBoEUFDOwSQeZ712UCVP5t2bybQZQ/preview",
+            title: "Parkour Game",
+            link: "https://www.roblox.com/games/17515509343/TESTING-FOR-NEW-GAME"
+        },
+        {
+            src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
+            title: "DTI System Remake",
+            link: "https://www.roblox.com/games/83267667610214/DTI"
+        },
+        {
+            src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
+            title: "Lumiere Runway Work",
+            link: "https://www.roblox.com/groups/8203456/Lumi-re-Runway#!/about"
+        },
+        {
+            src: "https://drive.google.com/file/d/1ieTiKxlz0ztlAb6rkA8rTd8WEiWeRE2Q/preview",
+            title: "Placable System + Sign System",
+            link: "https://www.roblox.com/games/120307706136956/Placables-System-V-1"
+        },
+        {
+            src: "https://drive.google.com/file/d/1fOKsM0m5Oq9UsrK24_IE4TFOPalk65n8/preview",
+            title: "Fan Hit System",
+            link: ""  // No game link
+        }
+    ];
+
     
     <div class="info-page" id="infoPage">
         <button class="back-button" id="backButtonInfo">Back</button>
@@ -405,7 +469,33 @@
         let settingsTooltip = document.getElementById('settingsTooltip');
         let backgroundEffect = document.getElementById('backgroundEffect');
         let backgroundEnabled = true;
+let currentVideoIndex = 0;
 
+    function updateVideo() {
+        const video = videos[currentVideoIndex];
+        document.getElementById('videoFrame').src = video.src;
+        document.getElementById('videoTitle').innerText = video.title;
+        const gameLink = document.getElementById('gameLink');
+        if (video.link) {
+            gameLink.href = video.link;
+            gameLink.style.display = 'inline';
+        } else {
+            gameLink.style.display = 'none';  // Hide link if none exists
+        }
+    }
+
+    function nextVideo() {
+        currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        updateVideo();
+    }
+
+    function prevVideo() {
+        currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+        updateVideo();
+    }
+
+    // Initialize the first video
+    updateVideo();
         button.addEventListener('click', () => {
             gsap.to(button, { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
                 button.style.display = "none";
