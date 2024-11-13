@@ -14,12 +14,12 @@
         body {
             background-color: #111111;
             overflow-x: hidden;
-            position: relative;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            font-family: Arial, sans-serif;
         }
 
         .bg {
@@ -30,34 +30,33 @@
             height: 200vh;
             background: url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
             opacity: 0.9;
-            visibility: visible;
             z-index: -1;
             animation: bg-animation 1.5s steps(10) infinite;
         }
 
         @keyframes bg-animation {
-            0% { transform: translate(0,0); }
-            10% { transform: translate(-5%,-5%); }
-            20% { transform: translate(-10%,5%); }
-            30% { transform: translate(5%,-10%); }
-            40% { transform: translate(-5%,15%); }
-            50% { transform: translate(-10%,5%); }
-            60% { transform: translate(15%,0%); }
-            70% { transform: translate(0,10%); }
-            80% { transform: translate(-15%,0%); }
-            90% { transform: translate(10%,5%); }
-            100% { transform: translate(5%,0%); }
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); }
+            30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 15%); }
+            50% { transform: translate(-10%, 5%); }
+            60% { transform: translate(15%, 0%); }
+            70% { transform: translate(0, 10%); }
+            80% { transform: translate(-15%, 0%); }
+            90% { transform: translate(10%, 5%); }
+            100% { transform: translate(5%, 0%); }
         }
 
         .title {
-            font-size: 28px;
+            font-size: 32px;
             color: #FFFFFF;
             margin-bottom: 20px;
             text-align: center;
             animation: fadeIn 1s ease;
         }
 
-        .btn, .nav-button {
+        .btn {
             font-size: 24px;
             font-weight: bold;
             padding: 20px 40px;
@@ -66,10 +65,60 @@
             color: #FFFFFF;
             border: none;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .btn:hover, .nav-button:hover {
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .btn.full-screen-expand {
+            animation: fullScreenExpand 1s ease forwards;
+        }
+
+        @keyframes fullScreenExpand {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(100);
+                opacity: 0;
+            }
+        }
+
+        .page2, .work-gallery-content, .marketplace-content, .info-page {
+            display: none;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 20px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #333333;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-button:hover {
             transform: scale(1.1);
         }
 
@@ -85,7 +134,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 1;
+            transition: background-color 0.3s;
         }
 
         .settings-icon:hover {
@@ -132,38 +181,6 @@
             transform: translateY(-5px);
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             color: #ffffff;
-        }
-
-        .divider {
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #ffffff, transparent);
-            margin: 20px 0;
-            opacity: 0.8;
-        }
-
-        .page2 {
-            display: none;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .page2 .nav-button {
-            margin: 10px;
-        }
-
-        .work-gallery-content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: #FFFFFF;
-            width: 100%;
-            max-height: 100vh;
-            overflow-y: hidden;
-            padding: 20px;
-            background-color: #121212;
         }
 
         .video-wrapper {
@@ -242,56 +259,6 @@
             transform: scale(1.05);
         }
 
-        .marketplace-content {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #FFFFFF;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .info-page {
-            display: none;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px;
-            width: 80%;
-            max-width: 800px;
-        }
-
-        .info-page .title-text {
-            font-size: 36px;
-            font-weight: bold;
-            text-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .info-page img {
-            border: 6px solid #8A2BE2;
-            border-radius: 20px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            transform: scale(1);
-            margin: 20px 0;
-        }
-
-        .info-page img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .description {
-            font-size: 20px;
-            color: #BBBBBB;
-            line-height: 1.6;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .description .bold {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -306,14 +273,14 @@
     <div class="settings-tooltip" id="settingsTooltip">Disable static effect</div>
 
     <div class="roblox-button" id="robloxButton">
-            <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
+        <a href="https://www.roblox.com/users/24830794/profile" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z" />
             </svg>
         </a>
     </div>
 
-    <div class="page2" id="page2" style="display:none;">
+    <div class="page2" id="page2">
         <div class="button-group">
             <button class="nav-button" id="workGalleryButton">Work Gallery</button>
             <button class="nav-button" id="infoButton">Info</button>
@@ -375,36 +342,6 @@
                 src: "https://drive.google.com/file/d/1nPKjc5B12e2ZCEJFDrOHAnG2H0EfCy1k/preview",
                 title: "Door System",
                 link: "https://www.roblox.com/games/90856562619374/doors"
-            },
-            {
-                src: "https://drive.google.com/file/d/1eHLOTUsEY_tHuiGjbWYYWsmY-fVVCU1x/preview",
-                title: "Spell Game",
-                link: ""  // No game link
-            },
-            {
-                src: "https://drive.google.com/file/d/1BPKVBoEUFDOwSQeZ712UCVP5t2bybQZQ/preview",
-                title: "Parkour Game",
-                link: "https://www.roblox.com/games/17515509343/TESTING-FOR-NEW-GAME"
-            },
-            {
-                src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
-                title: "DTI System Remake",
-                link: "https://www.roblox.com/games/83267667610214/DTI"
-            },
-            {
-                src: "https://drive.google.com/file/d/1ocgMbRgXrco28ZGDsS-dpZrSi4E2GjEG/preview",
-                title: "Lumiere Runway Work",
-                link: "https://www.roblox.com/groups/8203456/Lumi-re-Runway#!/about"
-            },
-            {
-                src: "https://drive.google.com/file/d/1ieTiKxlz0ztlAb6rkA8rTd8WEiWeRE2Q/preview",
-                title: "Placable System + Sign System",
-                link: "https://www.roblox.com/games/120307706136956/Placables-System-V-1"
-            },
-            {
-                src: "https://drive.google.com/file/d/1fOKsM0m5Oq9UsrK24_IE4TFOPalk65n8/preview",
-                title: "Fan Hit System",
-                link: ""  // No game link
             }
         ];
 
@@ -415,12 +352,8 @@
             document.getElementById('videoFrame').src = video.src;
             document.getElementById('videoTitle').innerText = video.title;
             const gameLink = document.getElementById('gameLink');
-            if (video.link) {
-                gameLink.href = video.link;
-                gameLink.style.display = 'inline';
-            } else {
-                gameLink.style.display = 'none';  // Hide link if none exists
-            }
+            gameLink.style.display = video.link ? 'inline' : 'none';
+            gameLink.href = video.link;
         }
 
         function nextVideo() {
@@ -433,11 +366,10 @@
             updateVideo();
         }
 
-        // Initialize the first video
         updateVideo();
 
         document.getElementById('clickButton').addEventListener('click', () => {
-            gsap.to(document.getElementById('clickButton'), { scale: 20, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
+            gsap.to(document.getElementById('clickButton'), { scale: 100, opacity: 0, duration: 1, ease: "power3.inOut", onComplete: () => {
                 document.getElementById('clickButton').style.display = "none";
                 document.getElementById('page2').style.display = "block";
             } });
