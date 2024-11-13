@@ -107,17 +107,6 @@
     margin-top: 30px;
 }
 
-        .nav-button {
-            font-size: 18px;
-            padding: 10px 20px;
-            background-color: #333333;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
         .nav-button:hover {
             transform: scale(1.1);
         }
@@ -183,71 +172,63 @@
             color: #ffffff;
         }
 
-.video-wrapper {
-    width: 1000px;
-    height: 1000px;
-    position: relative;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
+    .video-wrapper {
+        width: 80%;
+        max-width: 800px;
+        height: 450px;
+        position: relative;
+        margin-bottom: 20px;
+    }
 
-.video-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-}
+    .video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+    }
 
-.circular-button {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: #333333;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    text-decoration: none;
-    margin: 10px 0;
-    transition: background-color 0.3s;
-    cursor: pointer;
-}
+    .label-text {
+        font-size: 18px;
+        color: #CCCCCC;
+        margin-bottom: 10px;
+    }
 
-.circular-button:hover {
-    background-color: #555555;
-}
+    .game-link-btn {
+        color: #00A1FF;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
 
-.nav-button {
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #333333;
-    color: #FFFFFF;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #333;
+        color: #FFF;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
 
-.nav-button:hover {
-    background-color: #555555;
-    transform: translateY(-5px);
-}
+    .nav-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background-color: #555;
+    }
 
-.nav-left {
-    left: -60px;
-}
+    .nav-left {
+        left: -60px;
+    }
 
-.nav-right {
-    right: -60px;
-}
+    .nav-right {
+        right: -60px;
+    }
 
         .back-button {
             position: absolute;
@@ -304,19 +285,17 @@
         </div>
     </div>
 
+
 <div class="work-gallery-content" id="workGalleryContent">
     <button class="back-button" id="backButtonGallery">Back</button>
 
     <div class="video-wrapper">
+        <!-- Navigation buttons -->
         <div class="nav-button nav-left" onclick="prevVideo()">&#10094;</div>
         <iframe id="videoFrame" src="https://drive.google.com/file/d/1RM9rW-1cPEQSigXPwFIWB9jWAxEBlHSU/preview" allow="autoplay" allowfullscreen></iframe>
         <div class="nav-button nav-right" onclick="nextVideo()">&#10095;</div>
     </div>
-
-    <div class="circular-button label-text" id="videoTitle">Gesiha Morph System</div>
-    <a href="https://www.roblox.com/games/124145520481844/Geishas" target="_blank" id="gameLink" class="circular-button">Game Link</a>
 </div>
-
     <div class="info-page" id="infoPage">
         <button class="back-button" id="backButtonInfo">Back</button>
         <p class="title-text">
